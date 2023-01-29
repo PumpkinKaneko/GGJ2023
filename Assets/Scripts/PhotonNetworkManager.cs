@@ -16,10 +16,17 @@ public class PhotonNetworkManager : MonoBehaviourPunCallbacks
         PhotonNetwork.ConnectUsingSettings();
     }
 
+    // This function is callbacked when we are success to connect the master server.
     public override void OnConnectedToMaster()
     {
+        Debug.Log("Success to Connect the master server!");
         //PhotonNetwork.JoinRandomRoom();
         PhotonNetwork.JoinOrCreateRoom("Room", new RoomOptions(), TypedLobby.Default);
+    }
+
+    // This function is callbacked when we disconnect from the server.
+    public override void OnDisconnected(DisconnectCause cause) {
+        Debug.Log($"Disconnect from the server: {cause.ToString()}");
     }
 
 /*
