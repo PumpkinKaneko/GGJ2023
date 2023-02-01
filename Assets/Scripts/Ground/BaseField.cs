@@ -32,6 +32,12 @@ public class BaseField : MonoBehaviour
     }
 
 
+    public virtual void SkillCollision(SeedballBehaviour seedball, Collision collision)
+    {
+        //Debug.Log("ヒットスキル > " + seedball);
+    }
+
+
     protected virtual void OnCollisionEnter(Collision collision)
     {
         if(collision.transform.name.Contains("SeedballObj"))
@@ -39,6 +45,7 @@ public class BaseField : MonoBehaviour
             SeedballBehaviour seed = collision.transform.GetComponent<SeedballBehaviour>();
             seed.SetSkill(new SkillAction(Skill));
             seed.SetSkillUpdate(new SkillActionUpdate(SkillUpdate));
+            seed.SetSkillCollision(new SkillActionCollision(SkillCollision));
         }
     }
 }

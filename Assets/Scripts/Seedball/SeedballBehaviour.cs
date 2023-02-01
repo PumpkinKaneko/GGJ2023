@@ -2,14 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public delegate void SkillAction(SeedballBehaviour seedball);
 public delegate void SkillActionUpdate(SeedballBehaviour seedball);
+public delegate void SkillActionCollision(SeedballBehaviour seedball, Collision collision);
+
 
 [RequireComponent(typeof(Rigidbody))]
 public class SeedballBehaviour : MonoBehaviour
 {
     public SkillAction skill = null;
     public SkillActionUpdate skillUpdate;
+    public SkillActionCollision skillCollision;
 
     public MeshRenderer seedRenderer;
     public bool showDebugGUI = false;
@@ -44,6 +48,7 @@ public class SeedballBehaviour : MonoBehaviour
         }
 
         if (_actionState == (int)ActionState.Finished && _skillState == (int)SkillState.Finished) Setup();
+
         if (Input.GetKeyDown(KeyCode.Return))
         {
             if(_actionState==(int)ActionState.Stay)
@@ -161,6 +166,13 @@ public class SeedballBehaviour : MonoBehaviour
     }
 
 
+    public void SetSkillCollision(SkillActionCollision action)
+    {
+        skillCollision = action;
+        Debug.Log("コリンジョンスキルをセットしました... " + skillCollision);
+    }
+
+
     public void Setup()
     {
         _actionState = (int)ActionState.Stay;
@@ -177,6 +189,14 @@ public class SeedballBehaviour : MonoBehaviour
 
         _skillState = (int)SkillState.Execute;
     }
+
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        
+        if(skillCollision != null) skillCollision(this, collision);
+    }
+
 
     private void OnGUI()
     {
@@ -215,5 +235,4 @@ public class SeedballBehaviour : MonoBehaviour
         Execute,
         Finished
     }
-        
 }
