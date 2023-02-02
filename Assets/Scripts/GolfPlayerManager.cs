@@ -22,6 +22,13 @@ public class GolfPlayerManager : MonoBehaviour
 
     public golfTurn nowGolfTurn;
 
+    [SerializeField,Header("‚Ç‚ê‚®‚ç‚¢‚Ì‹­‚³‚Å‘Å‚Â‚©")]
+    private float shotPower;
+    public float ShotPower { get { return shotPower; } set { shotPower = value; } }
+
+    [SerializeField,Header("‚Ç‚ê‚®‚ç‚¢‚Ì‘¬‚³‚Å‰ñ“]‚·‚é‚©")]
+    private float rotSpeed;
+
     private void Awake()
     {
         //nowGolfTurn = golfTurn.PLAY_START;

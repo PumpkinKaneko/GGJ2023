@@ -45,6 +45,7 @@ public class GolfPlayerController : MonoBehaviour
             case GolfPlayerManager.golfTurn.PLAY_START:
                 break;
             case GolfPlayerManager.golfTurn.RESET_SHOT_READY:
+
                 break;
             case GolfPlayerManager.golfTurn.SHOT_READY:
                 ShotReady();
@@ -70,37 +71,40 @@ public class GolfPlayerController : MonoBehaviour
 
         if (gageStart)
         {
-            //if (gage <= 0.0f)
-            //{
-            //    isAdd = true;
-            //}
-            if (gage >= 100.0f)
+            if (gage >= 1)
             {
                 isAdd = false;
             }
 
             if (isAdd)
             {
-                gage += 0.01f;
+                gage = Mathf.Clamp01(gage + (Time.deltaTime * 1));
             }
             else
             {
-                gage -= 0.01f;
+                gage = Mathf.Clamp01(gage - (Time.deltaTime * 1));
             }
         }
+    }
+
+    //ゲージの値などを
+    private void ResetShotReady()
+    {
+
     }
 
     //ここで方向の打つ角度を調整
     private void ShotReady()
     {
         gameObject.transform.rotation = Quaternion.Euler(0, transform.rotation.y + rot, 0);
+
         if (Input.GetKey(KeyCode.A))
         {
-            rot -= 1;
+            rot -= Time.deltaTime * 3;
         }
         if (Input.GetKey(KeyCode.D))
         {
-            rot += 1;
+            rot += Time.deltaTime * 3;
         }
 
 
@@ -140,22 +144,8 @@ public class GolfPlayerController : MonoBehaviour
     //向いてる方向へ力と補正値をあわせて打つ
     private void Shot()
     {
-        // 力を加える向きをVector3型で定義
-        // 今回はY軸から45度の向きに射出するため、YとZを1:1にする
-        Vector3 forceDirection = new Vector3(impactPower, 1.0f, 1.0f);
-
-        // 上の向きに加わる力の大きさを定義
-        float forceMagnitude = 10f;
-
-        // 向きと大きさからSphereに加わる力を計算する
-        Vector3 force = forceMagnitude * forceDirection;
-
-        // SphereオブジェクトのRigidbodyコンポーネントへの参照を取得
-        Rigidbody rb = gameObject.GetComponent<Rigidbody>();
-
-        // 力を加えるメソッド
         // ForceMode.Impulseは撃力
-        rb.AddForce(force /** (strikePower / 100)*/, ForceMode.Impulse);
+        rb.AddForce((transform.forward + transform.up) * strikePower, ForceMode.Impulse);
 
         manager.nowGolfTurn = GolfPlayerManager.golfTurn.BALL_FLY;
     }
