@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5186579462503466185}
   - component: {fileID: 5186579462503466184}
   - component: {fileID: 5186579462503466183}
-  - component: {fileID: 5186579462503466187}
+  - component: {fileID: 1638382285}
   m_Layer: 0
   m_Name: FUYU
   m_TagString: Untagged
@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3abc62f8139fd104cb1c04fa7caa7487, type: 2}
+  - {fileID: 2100000, guid: e6d07ad0fc601e245a31a5235c42eae0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -99,7 +99,7 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &5186579462503466187
+--- !u!114 &1638382285
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -108,7 +108,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5186579462503466181}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec6c1dda38a09b5479448cf7411e4a9f, type: 3}
+  m_Script: {fileID: 11500000, guid: 65c69179f53d76344aec594fcfc2d473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 0, g: 1, b: 0, a: 1}
+  color: {r: 0.96093774, g: 1, b: 0, a: 1}
