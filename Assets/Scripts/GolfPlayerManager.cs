@@ -24,10 +24,19 @@ public class GolfPlayerManager : MonoBehaviour
 
     [SerializeField,Header("どれぐらいの強さで打つか")]
     private float shotPower;
-    public float ShotPower { get { return shotPower; } set { shotPower = value; } }
+    public float ShotPower { get { return shotPower; } }
 
     [SerializeField,Header("どれぐらいの速さで回転するか")]
     private float rotSpeed;
+    public float RotSpeed { get { return rotSpeed; } }
+
+    [SerializeField,Header("打つ時のゲージの速さ(秒間)")]
+    private float gageSpeed;
+    public float GageSpeed { get { return gageSpeed; } }
+
+    [SerializeField,Header("カップの位置")]
+    private GameObject lookTarget;
+    public GameObject LookTarget { get { return lookTarget; } }
 
     private void Awake()
     {

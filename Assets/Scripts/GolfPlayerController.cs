@@ -1,14 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class GolfPlayerController : MonoBehaviour
 {
-    #region//デバック用
-    public Text test;
-    #endregion
-
     private GameObject ball;
 
     private bool gageStart;
@@ -38,14 +33,12 @@ public class GolfPlayerController : MonoBehaviour
 
     void Update()
     {
-        test.text = gage + ":" + strikePower + ":" + impactPower;
-
         switch (manager.nowGolfTurn)
         {
             case GolfPlayerManager.golfTurn.PLAY_START:
                 break;
             case GolfPlayerManager.golfTurn.RESET_SHOT_READY:
-
+                ResetShotReady();
                 break;
             case GolfPlayerManager.golfTurn.SHOT_READY:
                 ShotReady();
@@ -71,26 +64,35 @@ public class GolfPlayerController : MonoBehaviour
 
         if (gageStart)
         {
-            if (gage >= 1)
+            if (gage >= 1.0f)
             {
                 isAdd = false;
             }
 
             if (isAdd)
             {
-                gage = Mathf.Clamp01(gage + (Time.deltaTime * 1));
+                gage = Mathf.Clamp01(gage + (Time.deltaTime / manager.GageSpeed));
             }
             else
             {
-                gage = Mathf.Clamp01(gage - (Time.deltaTime * 1));
+                gage = Mathf.Clamp(gage - (Time.deltaTime / manager.GageSpeed),-0.1f,1.0f);
             }
         }
     }
 
-    //ゲージの値などを
+    //ゲージの値などをリセットし※出来たらカップの方向を見る
     private void ResetShotReady()
     {
+        gage = 0.0f;
+        impactPower = 0.0f;
+        strikePower = 0.0f;
 
+        
+        gameObject.transform.LookAt(manager.LookTarget.transform.localPosition);
+        //gameObject.transform.rotation = Quaternion.Euler(0, gameObject.transform.rotation.y, 0);
+        
+
+        manager.nowGolfTurn = GolfPlayerManager.golfTurn.SHOT_READY;
     }
 
     //ここで方向の打つ角度を調整
@@ -100,11 +102,11 @@ public class GolfPlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.A))
         {
-            rot -= Time.deltaTime * 3;
+            rot -= Time.deltaTime * manager.RotSpeed;
         }
         if (Input.GetKey(KeyCode.D))
         {
-            rot += Time.deltaTime * 3;
+            rot += Time.deltaTime * manager.RotSpeed;
         }
 
 
@@ -145,7 +147,7 @@ public class GolfPlayerController : MonoBehaviour
     private void Shot()
     {
         // ForceMode.Impulseは撃力
-        rb.AddForce((transform.forward + transform.up) * strikePower, ForceMode.Impulse);
+        rb.AddForce((transform.forward + transform.up) * (strikePower * manager.ShotPower), ForceMode.Impulse);
 
         manager.nowGolfTurn = GolfPlayerManager.golfTurn.BALL_FLY;
     }
