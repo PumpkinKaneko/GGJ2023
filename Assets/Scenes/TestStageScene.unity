@@ -153,8 +153,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fieldblocks:
-  - {fileID: 942325869825682106, guid: 87d6838d17dcdcb43b227950d03eb3ba, type: 3}
-  blockScale: {x: 1, y: 1, z: 1}
+  - {fileID: 3210460952366887368, guid: 66ea025ade925664b90a61d585b74e24, type: 3}
+  blockScale: {x: 1.5, y: 1, z: 1.732051}
+  mapSetting:
+    mapDataPath:
+    - /CSV/Stage0000/stage0000_map.csv
+    heightDataPath:
+    - /CSV/Stage0000/stage0000_height.csv
 --- !u!4 &478332526
 Transform:
   m_ObjectHideFlags: 0
@@ -163,7 +168,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 478332524}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.77453923, y: 4.2867475, z: -4.2317286}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
