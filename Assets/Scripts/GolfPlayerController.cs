@@ -15,6 +15,7 @@ public class GolfPlayerController : MonoBehaviour
 
     //打つ力(パーセント)
     private float strikePower;
+    public float StrikePower { get { return strikePower; } }
     //補正値
     private float impactPower;
 
@@ -87,11 +88,9 @@ public class GolfPlayerController : MonoBehaviour
         impactPower = 0.0f;
         strikePower = 0.0f;
 
-        
-        gameObject.transform.LookAt(manager.LookTarget.transform.localPosition);
+        //gameObject.transform.LookAt(manager.LookTarget.transform.localPosition);
         //gameObject.transform.rotation = Quaternion.Euler(0, gameObject.transform.rotation.y, 0);
         
-
         manager.nowGolfTurn = GolfPlayerManager.golfTurn.SHOT_READY;
     }
 
@@ -122,10 +121,22 @@ public class GolfPlayerController : MonoBehaviour
     //打つ力の確定
     private void ShotPower()
     {
+        strikePower = gage;
+
         //インパクトを決めるようにする
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) || gage <= 0.0)
         {
             strikePower = gage;
+
+            //ゲージが0だったらランダムで強制で飛んでく
+            if (strikePower <= 0.0)
+            {
+                strikePower = Random.Range(0.01f, 1.01f);
+                impactPower = Random.Range(0.00f, 1.01f);
+                manager.nowGolfTurn = GolfPlayerManager.golfTurn.SHOT;
+                return;
+            }
+
             manager.nowGolfTurn = GolfPlayerManager.golfTurn.SHOT_IMPACT;
             isAdd = false;
         }
@@ -134,20 +145,55 @@ public class GolfPlayerController : MonoBehaviour
     //打つ力の補正値の確定
     private void ShotImpact()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) || gage <= -0.1f) 
         {
             impactPower = gage;
+
+            if (impactPower < 0.0f)
+            {
+                Debug.Log("動いた");
+
+                //-0.1だった場合0.1～1にランダムで設定するようにする。
+                if (impactPower == -0.1f)
+                {
+                    impactPower = Random.Range(-1.1f, -0.09f);
+                    impactPower = impactPower * -1.0f;
+                }
+                
+                impactPower = impactPower * 1.0f;
+            }
+
+            if (impactPower <= 0.05f) 
+            {
+                impactPower = 0.0f;
+            }
+
             gageStart = false;
             manager.nowGolfTurn = GolfPlayerManager.golfTurn.SHOT;
-            
         }
     }
 
     //向いてる方向へ力と補正値をあわせて打つ
     private void Shot()
     {
+        var ImpactCorrection = Vector3.zero;
+
+        if (impactPower > 0.0f)
+        {
+            int random = Random.Range(0, 2);
+            if (random == 0)
+            {
+                ImpactCorrection = Vector3.left * impactPower;
+            }
+            else
+            {
+                ImpactCorrection = Vector3.right * impactPower;
+            }
+        }
+
+        Debug.Log("ImpactCorrection : " + ImpactCorrection);
         // ForceMode.Impulseは撃力
-        rb.AddForce((transform.forward + transform.up) * (strikePower * manager.ShotPower), ForceMode.Impulse);
+        rb.AddForce((transform.forward + transform.up + ImpactCorrection) * (strikePower * manager.ShotPower), ForceMode.Impulse);
 
         manager.nowGolfTurn = GolfPlayerManager.golfTurn.BALL_FLY;
     }
