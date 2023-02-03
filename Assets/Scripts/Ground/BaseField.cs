@@ -42,12 +42,9 @@ public class BaseField : MonoBehaviour
 
     public virtual void OnChildCollisionEnter(Collision collision)
     {
-        Debug.Log("hit > " + collision.transform.name);
-
         if (collision.transform.name.Contains("SeedballObj"))
         {
             SeedballBehaviour seed = collision.transform.GetComponent<SeedballBehaviour>();
-            Debug.Log("Hit");
             seed.SetSkill(new SkillAction(Skill));
             seed.SetSkillUpdate(new SkillActionUpdate(SkillUpdate));
             seed.SetSkillCollision(new SkillActionCollision(SkillCollision));
@@ -57,6 +54,7 @@ public class BaseField : MonoBehaviour
 
     protected virtual void OnCollisionEnter(Collision collision)
     {
+        /*
         Debug.Log("hit > " + collision.transform.name);
 
         if(collision.transform.name.Contains("SeedballObj"))
@@ -67,5 +65,6 @@ public class BaseField : MonoBehaviour
             seed.SetSkillUpdate(new SkillActionUpdate(SkillUpdate));
             seed.SetSkillCollision(new SkillActionCollision(SkillCollision));
         }
+        */
     }
 }

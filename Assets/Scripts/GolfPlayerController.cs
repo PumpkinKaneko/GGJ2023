@@ -29,6 +29,7 @@ public class GolfPlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        manager = GameObject.Find("PlayerManager").GetComponent<GolfPlayerManager>();
     }
 
     void Update()
@@ -78,7 +79,7 @@ public class GolfPlayerController : MonoBehaviour
                 gage = Mathf.Clamp(gage - (Time.deltaTime / manager.GageSpeed),-0.1f,1.0f);
             }
 
-            Debug.Log("" + gage);
+            //Debug.Log("" + gage);
         }
     }
 

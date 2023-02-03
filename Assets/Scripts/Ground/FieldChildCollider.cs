@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FiledChildCollider : MonoBehaviour
+public class FieldChildCollider : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
