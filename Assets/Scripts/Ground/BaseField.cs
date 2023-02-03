@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[ExecuteInEditMode]
+
 public class BaseField : MonoBehaviour
 {
+    public Renderer rendererSelf;
     public Color color = Color.white;
 
     // Start is called before the first frame update
@@ -16,7 +17,7 @@ public class BaseField : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        GetComponent<MeshRenderer>().sharedMaterial.color = color;
+        rendererSelf.material.color = color;
     }
 
 
@@ -38,11 +39,30 @@ public class BaseField : MonoBehaviour
     }
 
 
+
+    public virtual void OnChildCollisionEnter(Collision collision)
+    {
+        Debug.Log("hit > " + collision.transform.name);
+
+        if (collision.transform.name.Contains("SeedballObj"))
+        {
+            SeedballBehaviour seed = collision.transform.GetComponent<SeedballBehaviour>();
+            Debug.Log("Hit");
+            seed.SetSkill(new SkillAction(Skill));
+            seed.SetSkillUpdate(new SkillActionUpdate(SkillUpdate));
+            seed.SetSkillCollision(new SkillActionCollision(SkillCollision));
+        }
+    }
+
+
     protected virtual void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("hit > " + collision.transform.name);
+
         if(collision.transform.name.Contains("SeedballObj"))
         {
             SeedballBehaviour seed = collision.transform.GetComponent<SeedballBehaviour>();
+            Debug.Log("Hit");
             seed.SetSkill(new SkillAction(Skill));
             seed.SetSkillUpdate(new SkillActionUpdate(SkillUpdate));
             seed.SetSkillCollision(new SkillActionCollision(SkillCollision));

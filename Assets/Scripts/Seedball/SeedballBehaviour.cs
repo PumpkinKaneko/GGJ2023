@@ -33,7 +33,7 @@ public class SeedballBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        AddForce(Vector3.up * 5, ForceMode.Impulse);
+        //AddForce(Vector3.up * 5, ForceMode.Impulse);
     }
 
     // Update is called once per frame
@@ -178,6 +178,8 @@ public class SeedballBehaviour : MonoBehaviour
         _actionState = (int)ActionState.Stay;
         _skillState = (int)SkillState.Stay;
         SetMaterialColor = Color.white;
+
+        GameObject.Find("PlayerManager").GetComponent<GolfPlayerManager>().nowGolfTurn = GolfPlayerManager.golfTurn.RESET_SHOT_READY;
     }
 
 
@@ -185,7 +187,7 @@ public class SeedballBehaviour : MonoBehaviour
     {
         yield return new WaitForSeconds(_skillEnterDelay);
 
-        skill(this);
+        if(skill != null) skill(this);
 
         _skillState = (int)SkillState.Execute;
     }

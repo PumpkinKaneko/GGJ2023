@@ -77,6 +77,8 @@ public class GolfPlayerController : MonoBehaviour
             {
                 gage = Mathf.Clamp(gage - (Time.deltaTime / manager.GageSpeed),-0.1f,1.0f);
             }
+
+            Debug.Log("" + gage);
         }
     }
 
@@ -147,7 +149,7 @@ public class GolfPlayerController : MonoBehaviour
     private void Shot()
     {
         // ForceMode.Impulse‚ÍŒ‚—Í
-        rb.AddForce((transform.forward + transform.up) * (strikePower * manager.ShotPower), ForceMode.Impulse);
+        GetComponent<SeedballBehaviour>().AddForce((transform.forward + transform.up) * (strikePower * manager.ShotPower), ForceMode.Impulse);
 
         manager.nowGolfTurn = GolfPlayerManager.golfTurn.BALL_FLY;
     }
