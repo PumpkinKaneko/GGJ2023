@@ -155,21 +155,21 @@ public class SeedballBehaviour : MonoBehaviour
     public void SetSkill(SkillAction action)
     {
         skill = action;
-        Debug.Log("スキルをセットしました... " + skill);
+        //Debug.Log("スキルをセットしました... " + skill);
     }
 
 
     public void SetSkillUpdate(SkillActionUpdate action)
     {
         skillUpdate = action;
-        Debug.Log("アップデートスキルをセットしました... " + skillUpdate);
+        //Debug.Log("アップデートスキルをセットしました... " + skillUpdate);
     }
 
 
     public void SetSkillCollision(SkillActionCollision action)
     {
         skillCollision = action;
-        Debug.Log("コリンジョンスキルをセットしました... " + skillCollision);
+        //Debug.Log("コリンジョンスキルをセットしました... " + skillCollision);
     }
 
 

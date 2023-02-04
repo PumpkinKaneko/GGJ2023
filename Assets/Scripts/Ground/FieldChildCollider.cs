@@ -19,6 +19,7 @@ public class FieldChildCollider : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
-        this.transform.parent.parent.GetComponent<BaseField>().OnChildCollisionEnter(collision);
+        if(this.transform.parent.parent.GetComponent<BaseField>())
+            this.transform.parent.parent.GetComponent<BaseField>().OnChildCollisionEnter(collision);
     }
 }
