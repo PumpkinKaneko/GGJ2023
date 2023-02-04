@@ -104,6 +104,7 @@ public class GolfPlayerController : MonoBehaviour
 
         arrowObj.SetActive(true);
 
+        //打数を追加する
         gamePlayManager.ShotCount++;
         manager.nowGolfTurn = GolfPlayerManager.golfTurn.SHOT_READY;
     }

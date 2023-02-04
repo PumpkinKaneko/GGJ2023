@@ -13,13 +13,8 @@ public class GamePlayManager : MonoBehaviour
         shotCountReset();
     }
 
-    void Update()
-    {
-        
-    }
-
     /// <summary>
-    /// 
+    /// 打ったカウントをリセット
     /// </summary>
     public void shotCountReset()
     {
