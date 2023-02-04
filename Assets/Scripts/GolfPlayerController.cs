@@ -30,6 +30,10 @@ public class GolfPlayerController : MonoBehaviour
     [SerializeField]
     Rigidbody rb;
 
+    private bool isOB = false;
+
+    private Vector3 shotPos= Vector3.zero;
+
     private float rot;
 
     private void Awake()
@@ -90,6 +94,15 @@ public class GolfPlayerController : MonoBehaviour
                 gage = Mathf.Clamp(gage - (Time.deltaTime / manager.GageSpeed),-0.1f,1.0f);
             }
         }
+
+        isOBFall();
+
+        if (isOB)
+        {
+            //失敗の音鳴らすときはこちら
+
+            manager.nowGolfTurn = GolfPlayerManager.golfTurn.RESET_SHOT_READY;
+        }
     }
 
     //ゲージの値などをリセットし※出来たらカップの方向を見る
@@ -98,6 +111,14 @@ public class GolfPlayerController : MonoBehaviour
         gage = 0.0f;
         impactPower = 0.0f;
         strikePower = 0.0f;
+        rb.velocity = Vector3.zero;
+
+        //落ちた時前回の位置に戻す
+        if (isOB)
+        {
+            gameObject.transform.position = shotPos;
+            isOB = false;
+        }
 
         //gameObject.transform.LookAt(manager.LookTarget.transform.localPosition);
         //gameObject.transform.rotation = Quaternion.Euler(0, gameObject.transform.rotation.y, 0);
@@ -112,6 +133,8 @@ public class GolfPlayerController : MonoBehaviour
     //ここで方向の打つ角度を調整
     private void ShotReady()
     {
+        shotPos = gameObject.transform.position;
+
         gameObject.transform.rotation = Quaternion.Euler(0, transform.rotation.y + rot, 0);
 
         rot += Time.deltaTime * manager.RotSpeed * StickValue();
@@ -121,6 +144,7 @@ public class GolfPlayerController : MonoBehaviour
         {
             gageStart = true;
             isAdd =true;
+            rb.angularVelocity = Vector3.zero;
             manager.nowGolfTurn = GolfPlayerManager.golfTurn.SHOT_POWER;
         }
     }
@@ -141,6 +165,7 @@ public class GolfPlayerController : MonoBehaviour
                 strikePower = Random.Range(0.01f, 1.01f);
                 impactPower = Random.Range(0.00f, 1.01f);
                 arrowObj.SetActive(false);
+                gageStart = false;
                 manager.nowGolfTurn = GolfPlayerManager.golfTurn.SHOT;
                 return;
             }
@@ -203,6 +228,20 @@ public class GolfPlayerController : MonoBehaviour
         GetComponent<SeedballBehaviour>().AddForce((transform.forward + transform.up + ImpactCorrection) * (strikePower * manager.ShotPower), ForceMode.Impulse);
 
         manager.nowGolfTurn = GolfPlayerManager.golfTurn.BALL_FLY;
+    }
+
+    /// <summary>
+    /// -5以下に行ったらの判定
+    /// </summary>
+    /// <param name="_isOB"></param>
+    /// <returns>_isOB</returns>
+    private bool isOBFall()
+    {
+        if (gameObject.transform.localPosition.y <= -5)
+        {
+            isOB = true;
+        }
+        return isOB;
     }
 
     /// <summary>
