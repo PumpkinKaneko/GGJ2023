@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   seedRenderer: {fileID: 7396614178109391604}
-  showDebugGUI: 0
+  showDebugGUI: 1
 --- !u!114 &7019246869948460375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -94,8 +94,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.75
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &8506495063323897061
 GameObject:
   m_ObjectHideFlags: 0

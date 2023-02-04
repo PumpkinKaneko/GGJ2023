@@ -19,7 +19,6 @@ public class BaseField : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-
     }
 
 

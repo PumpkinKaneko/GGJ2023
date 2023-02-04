@@ -42,10 +42,7 @@ public class SeedballBehaviour : MonoBehaviour
         ActionStateUpdate();
         SkillStateUpdate();
 
-        if (_skillState == (int)SkillState.Execute)
-        {
-            if (skillUpdate != null) skillUpdate(this);
-        }
+        if (skillUpdate != null) skillUpdate(this);
 
         if (_actionState == (int)ActionState.Finished && _skillState == (int)SkillState.Finished) Setup();
 
@@ -210,13 +207,16 @@ public class SeedballBehaviour : MonoBehaviour
         string log = "=== Seedball Log ==="
             + "\nActionState > " + actionStateLog
             + "\nSkillState > " + _skillStateLog
-            + "\nStopDelay > " + _stopDelayTime;
+            + "\nStopDelay > " + _stopDelayTime
+            + "\nSkill > " + skill
+            + "\nSkillUpdate > " + skillUpdate
+            + "\nSkillCollision > " + skillCollision;
 
         GUI.backgroundColor = Color.red;
-        GUI.Box(new Rect(0, 0, 200, 100), "");
+        GUI.Box(new Rect(0, 0, 200, 200), "");
 
         GUI.color = Color.white;
-        GUI.Label(new Rect(5, 5, 195, 95), log);
+        GUI.Label(new Rect(5, 5, 195, 195), log);
     }
 
 
