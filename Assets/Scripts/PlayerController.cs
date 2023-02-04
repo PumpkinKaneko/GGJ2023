@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour/*PunCallbacks*/
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log(this.debugCanvas.name);
     }
 
     void Update()
