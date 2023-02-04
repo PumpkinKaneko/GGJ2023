@@ -29,6 +29,9 @@ public class SeedballBehaviour : MonoBehaviour
     public Rigidbody GetRigidbody { get { return GetComponent<Rigidbody>(); } }
     public Collider GetCollider { get { return GetComponent<Collider>(); } }
     public Color SetMaterialColor { get { return seedRenderer.material.color; } set { seedRenderer.material.color = value; } }
+    public SkillAction nextSkill { get; set; }
+    public SkillActionUpdate nextSkillUpdate { get; set; }
+    public SkillActionCollision nextSkillCollision { get; set; }
 
     // Start is called before the first frame update
     void Start()
@@ -37,7 +40,7 @@ public class SeedballBehaviour : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         ActionStateUpdate();
         SkillStateUpdate();
@@ -77,6 +80,11 @@ public class SeedballBehaviour : MonoBehaviour
                     {
                         _actionState = (int)ActionState.Stop;
                         _skillState = (int)SkillState.Wait;
+
+                        SetSkill(nextSkill);
+                        SetSkillUpdate(nextSkillUpdate);
+                        SetSkillCollision(nextSkillCollision);
+
                         StartCoroutine("SkillSequence");
 
                         _stopDelayTime = 0;
@@ -151,6 +159,7 @@ public class SeedballBehaviour : MonoBehaviour
 
     public void SetSkill(SkillAction action)
     {
+        if (skill != null) skill -= skill;
         skill = action;
         //Debug.Log("スキルをセットしました... " + skill);
     }
@@ -158,6 +167,7 @@ public class SeedballBehaviour : MonoBehaviour
 
     public void SetSkillUpdate(SkillActionUpdate action)
     {
+        if (skillUpdate != null) skillUpdate -= skillUpdate;
         skillUpdate = action;
         //Debug.Log("アップデートスキルをセットしました... " + skillUpdate);
     }
@@ -165,6 +175,7 @@ public class SeedballBehaviour : MonoBehaviour
 
     public void SetSkillCollision(SkillActionCollision action)
     {
+        if (skillCollision != null) skillCollision -= skillCollision;
         skillCollision = action;
         //Debug.Log("コリンジョンスキルをセットしました... " + skillCollision);
     }

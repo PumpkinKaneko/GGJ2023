@@ -19,6 +19,7 @@ public class BaseField : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
+
     }
 
 
@@ -47,9 +48,9 @@ public class BaseField : MonoBehaviour
         {
             SeedballBehaviour seed = collision.transform.GetComponent<SeedballBehaviour>();
 
-            seed.SetSkill(new SkillAction(Skill));
-            seed.SetSkillUpdate(new SkillActionUpdate(SkillUpdate));
-            seed.SetSkillCollision(new SkillActionCollision(SkillCollision));
+            seed.nextSkill = new SkillAction(Skill);
+            seed.nextSkillUpdate = new SkillActionUpdate(SkillUpdate);
+            seed.nextSkillCollision = new SkillActionCollision(SkillCollision);
         }
     }
 
