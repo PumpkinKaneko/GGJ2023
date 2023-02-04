@@ -40,7 +40,7 @@ public class SeedballBehaviour : MonoBehaviour
     }
 
     // Update is called once per frame
-    void LateUpdate()
+    void Update()
     {
         ActionStateUpdate();
         SkillStateUpdate();
@@ -145,6 +145,8 @@ public class SeedballBehaviour : MonoBehaviour
 
     public void AddForce(Vector3 force, ForceMode mode = ForceMode.Force)
     {
+        GetRigidbody.WakeUp();
+
         _actionState = (int)ActionState.Impact;
 
         GetRigidbody.AddForce(force, mode);
@@ -185,7 +187,10 @@ public class SeedballBehaviour : MonoBehaviour
     {
         _actionState = (int)ActionState.Stay;
         _skillState = (int)SkillState.Stay;
-        SetMaterialColor = Color.white;
+
+        GetRigidbody.velocity = Vector3.zero;
+        GetRigidbody.angularVelocity = Vector3.zero;
+        GetRigidbody.Sleep();
 
         GameObject.Find("PlayerManager").GetComponent<GolfPlayerManager>().nowGolfTurn = GolfPlayerManager.golfTurn.RESET_SHOT_READY;
     }

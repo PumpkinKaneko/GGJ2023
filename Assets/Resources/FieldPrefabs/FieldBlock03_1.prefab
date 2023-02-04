@@ -152,6 +152,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4780924376636855451}
+  - component: {fileID: 880958694147501521}
   m_Layer: 0
   m_Name: FieldBlock03_1
   m_TagString: StageObject/Panel
@@ -175,3 +176,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &880958694147501521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7980667131828112303}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a43ce46665b61149a95483181a4a122, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rendererSelf: {fileID: 4700354929894953924}
+  texture: {fileID: 2100000, guid: de2e77314d2b61648a787d56f16dca62, type: 2}
+  color: {r: 1, g: 1, b: 1, a: 1}

@@ -224,6 +224,7 @@ MonoBehaviour:
   rendererSelf: {fileID: 5377496225955493399}
   texture: {fileID: 2100000, guid: f09bc896ae214d74e8b14c43df41e39b, type: 2}
   color: {r: 1, g: 1, b: 1, a: 1}
+  floatLifeTime: 5
 --- !u!1 &7753934227412268793
 GameObject:
   m_ObjectHideFlags: 0
