@@ -32,8 +32,6 @@ public class GamePlayManager : MonoBehaviour
 
     }
 
-
-
     /// <summary>
     /// 打ったカウントをリセット
     /// </summary>
