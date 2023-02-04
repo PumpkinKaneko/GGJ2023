@@ -32,6 +32,12 @@ public class GolfPlayerController : MonoBehaviour
 
     private float rot;
 
+    private void Awake()
+    {
+        manager = GameObject.Find("PlayerManager").GetComponent<GolfPlayerManager>();
+        gamePlayManager = GameObject.Find("GamePlayManager").GetComponent<GamePlayManager>();
+    }
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -98,7 +104,7 @@ public class GolfPlayerController : MonoBehaviour
 
         arrowObj.SetActive(true);
 
-        //gamePlayManager.ShotCount++;
+        gamePlayManager.ShotCount++;
         manager.nowGolfTurn = GolfPlayerManager.golfTurn.SHOT_READY;
     }
 
