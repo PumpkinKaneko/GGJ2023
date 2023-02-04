@@ -114,17 +114,10 @@ public class GolfPlayerController : MonoBehaviour
     {
         gameObject.transform.rotation = Quaternion.Euler(0, transform.rotation.y + rot, 0);
 
-        if (Input.GetKey(KeyCode.A))
-        {
-            rot -= Time.deltaTime * manager.RotSpeed;
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            rot += Time.deltaTime * manager.RotSpeed;
-        }
+        rot += Time.deltaTime * manager.RotSpeed * StickValue();
 
         //向きが決定したらパワーを決める
-        if (Input.GetKeyDown(KeyCode.E))
+        if (DecisionButton())
         {
             gageStart = true;
             isAdd =true;
@@ -138,7 +131,7 @@ public class GolfPlayerController : MonoBehaviour
         strikePower = gage;
 
         //インパクトを決めるようにする
-        if (Input.GetKeyDown(KeyCode.E) || gage <= 0.0)
+        if (DecisionButton() || gage <= 0.0)
         {
             strikePower = gage;
 
@@ -160,7 +153,7 @@ public class GolfPlayerController : MonoBehaviour
     //打つ力の補正値の確定
     private void ShotImpact()
     {
-        if (Input.GetKeyDown(KeyCode.E) || gage <= -0.1f) 
+        if (DecisionButton() || gage <= -0.1f) 
         {
             impactPower = gage;
 
@@ -210,5 +203,48 @@ public class GolfPlayerController : MonoBehaviour
         rb.AddForce((transform.forward + transform.up + ImpactCorrection) * (strikePower * manager.ShotPower), ForceMode.Impulse);
 
         manager.nowGolfTurn = GolfPlayerManager.golfTurn.BALL_FLY;
+    }
+
+    /// <summary>
+    /// 決定ボタン処理
+    /// </summary>
+    /// <returns>Input.GetKeyDown(KeyCode.E)|| Input.GetKeyDown(KeyCode.JoystickButton0)</returns>
+    private bool DecisionButton()
+    {
+        bool Decision = false;
+
+        if(Input.GetKeyDown(KeyCode.E)|| Input.GetKeyDown(KeyCode.JoystickButton0))
+        {
+            Decision = true;
+        }
+        else
+        {
+            Decision = false;
+        }
+
+        return Decision;
+    }
+
+    /// <summary>
+    /// 左右キー反応
+    /// </summary>
+    /// <returns>Value = 1 || 0 </returns>
+    private float StickValue()
+    {
+        float Value;
+        
+        if (Input.GetKey(KeyCode.A) || Input.GetAxis("Axis 1") < 0f)
+        {
+            Value = -1.0f;
+        }
+        else if(Input.GetKey(KeyCode.D) || Input.GetAxis("Axis 1") > 0f)
+        {
+            Value = 1.0f;
+        }
+        else
+        {
+            Value = 0.0f;
+        }
+        return Value;
     }
 }
