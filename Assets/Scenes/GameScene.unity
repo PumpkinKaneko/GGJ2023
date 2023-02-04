@@ -483,7 +483,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 681324800}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: CameraController, Assembly-CSharp
           m_MethodName: OnClickTopCameraMoveDownActive
           m_Mode: 1
@@ -499,7 +499,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 681324800}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: CameraController, Assembly-CSharp
           m_MethodName: OnClickCameraMoveActiveOff
           m_Mode: 1
@@ -1054,7 +1054,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 681324800}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: CameraController, Assembly-CSharp
           m_MethodName: OnClickSideCameraMoveDownActive
           m_Mode: 1
@@ -1070,7 +1070,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 681324800}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: CameraController, Assembly-CSharp
           m_MethodName: OnClickCameraMoveActiveOff
           m_Mode: 1
@@ -1845,7 +1845,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 681324800}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CameraController, Assembly-CSharp
         m_MethodName: GoalCameraActive
         m_Mode: 1
@@ -2232,7 +2232,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 681324801}
-  - component: {fileID: 681324800}
+  - component: {fileID: 681324802}
   m_Layer: 0
   m_Name: CameraController
   m_TagString: Untagged
@@ -2240,18 +2240,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &681324800
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 681324799}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c84c5ede9b27c4bd6aca44c0a887616a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &681324801
 Transform:
   m_ObjectHideFlags: 0
@@ -2267,6 +2255,40 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &681324802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 681324799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e54b12efe15b79542b2213b76539cd32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 8461334974054569812, guid: 0313729a0236c124883c784e20db5dc4, type: 3}
+  field: {fileID: 1120436655}
+  topViewCamera: {fileID: 2070116429}
+  sideViewCamera: {fileID: 1719158065}
+  gameClearCamera: {fileID: 305582930}
+  playerPositionEffect: {fileID: 7569451302452698695, guid: 4f164ac26fc2e44aeade9f9a9ec06f4b, type: 3}
+  GoalPositionEffect: {fileID: 7569451302452698695, guid: 9b6b8cc1b66384b419444496ed797015, type: 3}
+  topViewCameraButton: {fileID: 1621314508}
+  sideViewCameraButton: {fileID: 845354213}
+  playerViewCameraButton: {fileID: 1065942276}
+  playerCameraButton: {fileID: 1130354638}
+  topViewCameraMoveButtons: {fileID: 1501989813}
+  sideViewCameraMoveButtons: {fileID: 1042530678}
+  resaltBackImage: {fileID: 463680380}
+  playerViewCamera_Vc: {fileID: 1344251216}
+  sideViewCamera_Vc: {fileID: 1719158066}
+  topViewCamera_Vc: {fileID: 2070116430}
+  gameClearCamera_Vc: {fileID: 305582933}
+  mapCameraMoveSpeed: 0.5
+  cameraRadiusSpeed: 1
+  zoomCameraMoveBool: 00000000000000000000
+  gameClearBool: 0
 --- !u!1 &720874814
 GameObject:
   m_ObjectHideFlags: 0
@@ -2511,7 +2533,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 681324800}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: CameraController, Assembly-CSharp
           m_MethodName: OnClickTopCameraMoveUpActive
           m_Mode: 1
@@ -2527,7 +2549,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 681324800}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: CameraController, Assembly-CSharp
           m_MethodName: OnClickCameraMoveActiveOff
           m_Mode: 1
@@ -2679,7 +2701,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 681324800}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: CameraController, Assembly-CSharp
           m_MethodName: OnClickSideCameraMoveUpActive
           m_Mode: 1
@@ -2695,7 +2717,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 681324800}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: CameraController, Assembly-CSharp
           m_MethodName: OnClickCameraMoveActiveOff
           m_Mode: 1
@@ -3015,7 +3037,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 681324800}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: CameraController, Assembly-CSharp
           m_MethodName: OnClickTopCameraMoveLeftActive
           m_Mode: 1
@@ -3031,7 +3053,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 681324800}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: CameraController, Assembly-CSharp
           m_MethodName: OnClickCameraMoveActiveOff
           m_Mode: 1
@@ -3253,7 +3275,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 681324800}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CameraController, Assembly-CSharp
         m_MethodName: OnClickSideViewCamera
         m_Mode: 1
@@ -3361,7 +3383,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 681324800}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: CameraController, Assembly-CSharp
           m_MethodName: OnClickTopCameraMoveRightActive
           m_Mode: 1
@@ -3377,7 +3399,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 681324800}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: CameraController, Assembly-CSharp
           m_MethodName: OnClickCameraMoveActiveOff
           m_Mode: 1
@@ -3529,7 +3551,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 681324800}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: CameraController, Assembly-CSharp
           m_MethodName: OnClickTopCameraZoomDownActive
           m_Mode: 1
@@ -3545,7 +3567,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 681324800}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: CameraController, Assembly-CSharp
           m_MethodName: OnClickCameraMoveActiveOff
           m_Mode: 1
@@ -3855,7 +3877,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 681324800}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CameraController, Assembly-CSharp
         m_MethodName: OnClickPlayerViewCamera
         m_Mode: 1
@@ -4946,7 +4968,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 681324800}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: CameraController, Assembly-CSharp
           m_MethodName: OnClickTopCameraZoomUpActive
           m_Mode: 1
@@ -4962,7 +4984,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 681324800}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: CameraController, Assembly-CSharp
           m_MethodName: OnClickCameraMoveActiveOff
           m_Mode: 1
@@ -5194,7 +5216,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 681324800}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: CameraController, Assembly-CSharp
           m_MethodName: OnClickSideCameraMoveRightActive
           m_Mode: 1
@@ -5210,7 +5232,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 681324800}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: CameraController, Assembly-CSharp
           m_MethodName: OnClickCameraMoveActiveOff
           m_Mode: 1
@@ -5388,7 +5410,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 681324800}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CameraController, Assembly-CSharp
         m_MethodName: OnClickSideCameraPositionReset
         m_Mode: 1
@@ -5645,7 +5667,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 681324800}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CameraController, Assembly-CSharp
         m_MethodName: OnClickTopViewCamera
         m_Mode: 1
@@ -5859,7 +5881,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 681324800}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CameraController, Assembly-CSharp
         m_MethodName: OnClickTopCameraPositionReset
         m_Mode: 1
@@ -6555,7 +6577,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 681324800}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: CameraController, Assembly-CSharp
           m_MethodName: OnClickSideCameraMoveLeftActive
           m_Mode: 1
@@ -6571,7 +6593,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 681324800}
+        - m_Target: {fileID: 0}
           m_TargetAssemblyTypeName: CameraController, Assembly-CSharp
           m_MethodName: OnClickCameraMoveActiveOff
           m_Mode: 1
