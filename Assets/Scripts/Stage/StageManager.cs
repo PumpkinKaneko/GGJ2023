@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StageManager : MonoBehaviour
+public class StageManager : SingletonMonoBehaviour<StageManager>
 {
     [System.Serializable]
     public class BlockMapSetting
