@@ -1,8 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
-using Photon.Realtime;
+//using Photon.Pun;
+//using Photon.Realtime;
 
 
 public class SampleSceneManager : MonoBehaviour
@@ -18,7 +18,7 @@ public class SampleSceneManager : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape) == true) {
-            PhotonNetwork.Disconnect();
+            //PhotonNetwork.Disconnect();
             Application.Quit();
         }
     }

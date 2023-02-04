@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Photon.Pun;
+//using Photon.Pun;
 
-public class PlayerController : MonoBehaviourPunCallbacks
+public class PlayerController : MonoBehaviour/*PunCallbacks*/
 {
     private float speed = 0.05f;
 
@@ -19,10 +19,10 @@ public class PlayerController : MonoBehaviourPunCallbacks
 
     void Update()
     {
-        if(photonView.IsMine != true)
-        {
-            return;
-        }
+        //if(photonView.IsMine != true)
+        //{
+        //    return;
+        //}
 
         if(Input.GetKey(KeyCode.UpArrow) == true) {
             this.gameObject.transform.position += this.gameObject.transform.forward * speed;
