@@ -41,7 +41,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1217538787567329197}
-  - component: {fileID: 5157495447162028627}
   m_Layer: 0
   m_Name: FieldBlock03
   m_TagString: StageObject/Panel
@@ -65,20 +64,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5157495447162028627
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4358875350068347033}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd915ffa03648094fb3d4b8d5cc04912, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rendererSelf: {fileID: 1407326058111490290}
-  color: {r: 0.8867924, g: 0.4874971, b: 0, a: 1}
 --- !u!1 &8413684616870614551
 GameObject:
   m_ObjectHideFlags: 0
@@ -142,7 +127,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f09bc896ae214d74e8b14c43df41e39b, type: 2}
+  - {fileID: 2100000, guid: 69347405f8b66594289faea1ee7ae26f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

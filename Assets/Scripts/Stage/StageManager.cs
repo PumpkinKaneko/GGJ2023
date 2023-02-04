@@ -23,17 +23,21 @@ public class StageManager : MonoBehaviour
     [ExecuteInEditMode]
     void Start()
     {
-        Load(mapSetting.mapDataPath[loadMapIndex], mapSetting.heightDataPath[loadMapIndex]);
-        Create();
+        blockScale.z = (1 * ((Mathf.Sqrt(3) / 2))) * 2; // 六角形のズレ補正式
 
-        blockScale.z = (1 * ((Mathf.Sqrt(3) / 2))) * 2;
+        // CSV読み込み
+        Load(mapSetting.mapDataPath[loadMapIndex], mapSetting.heightDataPath[loadMapIndex]);
+        
+        // ステージ生成
+        Create();
     }
 
 
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="filePath">ファイルパス（ローカル）</param>
+    /// <param name="mapPath">ZXマップのファイルパス（ローカル）</param>
+    /// <param name="heightPath">高さマップのファイルパス（ローカル）</param>
     public void Load(string mapPath, string heightPath)
     {
         string[,] mapData = CSVIO.Read(mapPath);

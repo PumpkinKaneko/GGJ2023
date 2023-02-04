@@ -189,5 +189,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rendererSelf: {fileID: 5569593561791667300}
+  texture: {fileID: 2100000, guid: 8ca2f2e5457975248b584810f9e07003, type: 2}
   color: {r: 0, g: 1, b: 0, a: 1}
   seedball: {fileID: 8461334974054569812, guid: 0313729a0236c124883c784e20db5dc4, type: 3}

@@ -6,6 +6,7 @@ using UnityEngine;
 public class BaseField : MonoBehaviour
 {
     public Renderer rendererSelf;
+    public Material texture;
     public Color color = Color.white;
 
     // Start is called before the first frame update
@@ -18,6 +19,7 @@ public class BaseField : MonoBehaviour
     protected virtual void Update()
     {
         rendererSelf.material.color = color;
+        rendererSelf.material = texture;
     }
 
 

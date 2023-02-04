@@ -153,10 +153,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fieldblocks:
+  - {fileID: 6367277656427782698, guid: 0909a6340474d6f4782929a683569b03, type: 3}
   - {fileID: 3210460952366887368, guid: 66ea025ade925664b90a61d585b74e24, type: 3}
-  - {fileID: 5488340573000426666, guid: d1612373f73be6b4380852fc204ae5eb, type: 3}
-  - {fileID: 5488340573000426666, guid: d1612373f73be6b4380852fc204ae5eb, type: 3}
-  - {fileID: 5488340573000426666, guid: d1612373f73be6b4380852fc204ae5eb, type: 3}
+  - {fileID: 7980667131828112303, guid: 766be4bef85e1bd48989c8acf79e42de, type: 3}
+  - {fileID: 4358875350068347033, guid: fc4770f4650bdd34a8ab3aaabce10cfb, type: 3}
   - {fileID: 5488340573000426666, guid: d1612373f73be6b4380852fc204ae5eb, type: 3}
   - {fileID: 5488340573000426666, guid: d1612373f73be6b4380852fc204ae5eb, type: 3}
   - {fileID: 5488340573000426666, guid: d1612373f73be6b4380852fc204ae5eb, type: 3}
@@ -254,6 +254,7 @@ MonoBehaviour:
   - {fileID: 5488340573000426666, guid: d1612373f73be6b4380852fc204ae5eb, type: 3}
   - {fileID: 5488340573000426666, guid: d1612373f73be6b4380852fc204ae5eb, type: 3}
   - {fileID: 7111516187527218191, guid: 17583a396e557fc49854c8529e0cf3d9, type: 3}
+  - {fileID: 4223269442352903104, guid: f6213ba34ef22594d8819bf21c73a9b8, type: 3}
   blockScale: {x: 1.5, y: 1, z: 1.732051}
   loadMapIndex: 2
   mapSetting:
