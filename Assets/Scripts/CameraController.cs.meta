@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scripts/GaugeController.cs.meta
+guid: e54b12efe15b79542b2213b76539cd32
+========
 guid: c84c5ede9b27c4bd6aca44c0a887616a
+>>>>>>>> origin/Haroharo_programmer:Assets/Scripts/CameraController.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

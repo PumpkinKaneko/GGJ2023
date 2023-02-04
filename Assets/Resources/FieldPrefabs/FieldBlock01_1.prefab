@@ -41,6 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6084848731369212}
+  - component: {fileID: 3116744639170270756}
   m_Layer: 0
   m_Name: FieldBlock01_1
   m_TagString: StageObject/Panel
@@ -64,6 +65,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3116744639170270756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3210460952366887368}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f7a8c0f13efa8249b2feb6badc9abb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rendererSelf: {fileID: 249910915685820835}
+  texture: {fileID: 2100000, guid: f09bc896ae214d74e8b14c43df41e39b, type: 2}
+  color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &7220227484089657158
 GameObject:
   m_ObjectHideFlags: 0
@@ -76,6 +92,7 @@ GameObject:
   - component: {fileID: 3626073376978701623}
   - component: {fileID: 249910915685820835}
   - component: {fileID: 196872640752941119}
+  - component: {fileID: 4871878790492129036}
   m_Layer: 0
   m_Name: default
   m_TagString: StageObject/Panel
@@ -162,3 +179,15 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -2432090755550338912, guid: 79e085dafa09a044ba210b3bc4aa528f, type: 3}
+--- !u!114 &4871878790492129036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7220227484089657158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3617b0eb6f9a684b9581d99e18224f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
