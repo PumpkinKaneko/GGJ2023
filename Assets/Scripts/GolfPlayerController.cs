@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class GolfPlayerController : MonoBehaviour
 {
@@ -22,6 +23,9 @@ public class GolfPlayerController : MonoBehaviour
     [SerializeField, Header("矢印表示")]
     private GameObject arrowObj;
 
+    [SerializeField]
+    GameObject LookPos;
+
     [SerializeField,Header("プレイヤーマネージャー")]
     private GolfPlayerManager manager;
     [SerializeField,Header("ゲームプレイマネージャー")]
@@ -38,6 +42,9 @@ public class GolfPlayerController : MonoBehaviour
 
     private void Awake()
     {
+        GameObject.Find("CameraController").GetComponent<CameraController>().player = gameObject;
+        GameObject.Find("PlayerViewCamera").GetComponent<CinemachineVirtualCamera>().Follow = gameObject.transform;
+        GameObject.Find("PlayerViewCamera").GetComponent<CinemachineVirtualCamera>().LookAt = LookPos.transform;
         manager = GameObject.Find("PlayerManager").GetComponent<GolfPlayerManager>();
         gamePlayManager = GameObject.Find("GamePlayManager").GetComponent<GamePlayManager>();
     }
