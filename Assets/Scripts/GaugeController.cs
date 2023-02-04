@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public static class GaugeSettings {
-    public const float minValue = -0.2f;
+    public const float minValue = -0.1f;
     public const float maxValue = 1.0f;
     public const float initValue = 0.0f; // left side is 0.0f, right side is 1.0f;
     public const float speed = 0.005f;
@@ -22,7 +22,10 @@ public class GaugeController : MonoBehaviour
         PLAYING_POWER,
         PLAYING_IMPACT,
         RESULT,
-        END
+        END,
+
+        PLAYING,
+        PLAYING_AFTER_POWER_FIXED,
     }
 
     [SerializeField]
@@ -32,10 +35,15 @@ public class GaugeController : MonoBehaviour
     private Slider gaugeSlider = null;
 
     [SerializeField]
+    private Image powerBar = null;
+
+    [SerializeField]
     private float power = GaugeSettings.initValue;
 
     [SerializeField]
     private float impact = GaugeSettings.initImpact;
+
+    public GolfPlayerController playerController = null;
 
 
     // Start is called before the first frame update
@@ -73,6 +81,14 @@ public class GaugeController : MonoBehaviour
             case GAUGE_STATE.END:
                 this.End();
                 break;
+
+            case GAUGE_STATE.PLAYING:
+                this.Playing();
+                break;
+
+            case GAUGE_STATE.PLAYING_AFTER_POWER_FIXED:
+                this.PlayingAfterPowerFixed();
+                break;
         }
     }
 
@@ -83,18 +99,19 @@ public class GaugeController : MonoBehaviour
         this.state = GAUGE_STATE.READY;
     }
     private void Ready() {
-        if (Input.GetKeyDown(KeyCode.Space) == true) {
-            this.state = GAUGE_STATE.PLAYING_POWER;
-        }
+        //if (Input.GetKeyDown(KeyCode.Space) == true) {
+            this.state = GAUGE_STATE.PLAYING;
+        //}
+        
     }
     private void PlayingPower() {
-        this.gaugeSlider.value += GaugeSettings.speed;
         if (this.gaugeSlider.value >= GaugeSettings.maxValue) {
             this.state = GAUGE_STATE.PLAYING_IMPACT;
         }
         if (Input.GetKeyDown(KeyCode.Space) == true) {
             this.power = this.gaugeSlider.value;
         }
+        
     }
 
     private void PlayingImpact() {
@@ -114,14 +131,28 @@ public class GaugeController : MonoBehaviour
         if (this.impact == GaugeSettings.initImpact) {
             this.impact = Random.Range(GaugeSettings.initValue, GaugeSettings.maxValue);
         }
-
+        
         this.state = GAUGE_STATE.END;
     }
 
-    private void End() {
+    private void End() {        
         if (Input.GetKeyDown(KeyCode.Space) == true) {
             this.state = GAUGE_STATE.INIT;
+        }        
+    }
+    private void Playing() {        
+        this.gaugeSlider.value = this.playerController.StrikePower;
+        //this.gaugeSlider.value += GaugeSettings.speed;
+        this.powerBar.fillAmount = this.gaugeSlider.value;
+
+        if (Input.GetKeyDown(KeyCode.Space) == true) {
+            this.state = GAUGE_STATE.PLAYING_AFTER_POWER_FIXED;
         }
+    }
+
+    private void PlayingAfterPowerFixed() {        
+        this.gaugeSlider.value = this.playerController.StrikePower;
+        //this.gaugeSlider.value += GaugeSettings.speed;
     }
 
 
