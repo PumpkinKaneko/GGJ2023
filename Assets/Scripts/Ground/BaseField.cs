@@ -12,14 +12,14 @@ public class BaseField : MonoBehaviour
     // Start is called before the first frame update
     protected virtual void Start()
     {
-
+        rendererSelf.material.color = color;
+        rendererSelf.material = texture;
     }
 
     // Update is called once per frame
     protected virtual void Update()
     {
-        rendererSelf.material.color = color;
-        rendererSelf.material = texture;
+
     }
 
 
@@ -47,6 +47,7 @@ public class BaseField : MonoBehaviour
         if (collision.transform.name.Contains("SeedballObj"))
         {
             SeedballBehaviour seed = collision.transform.GetComponent<SeedballBehaviour>();
+
             seed.SetSkill(new SkillAction(Skill));
             seed.SetSkillUpdate(new SkillActionUpdate(SkillUpdate));
             seed.SetSkillCollision(new SkillActionCollision(SkillCollision));
