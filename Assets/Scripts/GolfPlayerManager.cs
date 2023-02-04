@@ -17,6 +17,9 @@ public class GolfPlayerManager : MonoBehaviour
         BALL_FLY,        //ボールが飛んでいる状態
         BALL_LANDING,   //ボールが着地したとき
 
+        UP_VIEW,         //上からの視点
+        SIDE_VIEW,      //横からの視点
+
         PLAY_END,        //プレイ終了
     }
 

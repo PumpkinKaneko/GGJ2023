@@ -9,6 +9,14 @@ public class TitleSceneManager : MonoBehaviour
 
     private bool buttonBool = true;//ボタン一回呼び出し
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.JoystickButton0))
+        {
+            OnClickGameStartButton();
+        }
+    }
+
     /// <summary>
     /// ゲーム画面へシーン遷移（ボタン割り当て）
     /// </summary>
