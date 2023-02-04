@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,17 +9,23 @@ public class GolfPlayerController : MonoBehaviour
     private bool gageStart;
     private bool isAdd;
 
-    //ƒQ[ƒW‚Ì”’l
+    //ã‚²ãƒ¼ã‚¸ã®æ•°å€¤
     private float gage;
-    public float Gage { get { return gage; } /*set { gage = value; }*/ }
+    public float Gage { get { return gage; } }
 
-    //‘Å‚Â—Í(ƒp[ƒZƒ“ƒg)
+    //æ‰“ã¤åŠ›(ãƒ‘ãƒ¼ã‚»ãƒ³ãƒˆ)
     private float strikePower;
-    //•â³’l
+    public float StrikePower { get { return strikePower; } }
+    //è£œæ­£å€¤
     private float impactPower;
 
-    [SerializeField,Header("ƒvƒŒƒCƒ„[ƒ}ƒl[ƒWƒƒ[")]
+    [SerializeField, Header("çŸ¢å°è¡¨ç¤º")]
+    private GameObject arrowObj;
+
+    [SerializeField,Header("ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼")]
     private GolfPlayerManager manager;
+    [SerializeField,Header("ã‚²ãƒ¼ãƒ ãƒ—ãƒ¬ã‚¤ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼")]
+    private GamePlayManager gamePlayManager;
 
     [SerializeField]
     Rigidbody rb;
@@ -29,7 +35,6 @@ public class GolfPlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        manager = GameObject.Find("PlayerManager").GetComponent<GolfPlayerManager>();
     }
 
     void Update()
@@ -78,27 +83,26 @@ public class GolfPlayerController : MonoBehaviour
             {
                 gage = Mathf.Clamp(gage - (Time.deltaTime / manager.GageSpeed),-0.1f,1.0f);
             }
-
-            //Debug.Log("" + gage);
         }
     }
 
-    //ƒQ[ƒW‚Ì’l‚È‚Ç‚ğƒŠƒZƒbƒg‚µ¦o—ˆ‚½‚çƒJƒbƒv‚Ì•ûŒü‚ğŒ©‚é
+    //ã‚²ãƒ¼ã‚¸ã®å€¤ãªã©ã‚’ãƒªã‚»ãƒƒãƒˆã—â€»å‡ºæ¥ãŸã‚‰ã‚«ãƒƒãƒ—ã®æ–¹å‘ã‚’è¦‹ã‚‹
     private void ResetShotReady()
     {
         gage = 0.0f;
         impactPower = 0.0f;
         strikePower = 0.0f;
 
-        
-        gameObject.transform.LookAt(manager.LookTarget.transform.localPosition);
+        //gameObject.transform.LookAt(manager.LookTarget.transform.localPosition);
         //gameObject.transform.rotation = Quaternion.Euler(0, gameObject.transform.rotation.y, 0);
-        
 
+        arrowObj.SetActive(true);
+
+        gamePlayManager.ShotCount++;
         manager.nowGolfTurn = GolfPlayerManager.golfTurn.SHOT_READY;
     }
 
-    //‚±‚±‚Å•ûŒü‚Ì‘Å‚ÂŠp“x‚ğ’²®
+    //ã“ã“ã§æ–¹å‘ã®æ‰“ã¤è§’åº¦ã‚’èª¿æ•´
     private void ShotReady()
     {
         gameObject.transform.rotation = Quaternion.Euler(0, transform.rotation.y + rot, 0);
@@ -112,8 +116,7 @@ public class GolfPlayerController : MonoBehaviour
             rot += Time.deltaTime * manager.RotSpeed;
         }
 
-
-        //Œü‚«‚ªŒˆ’è‚µ‚½‚çƒpƒ[‚ğŒˆ‚ß‚é
+        //å‘ããŒæ±ºå®šã—ãŸã‚‰ãƒ‘ãƒ¯ãƒ¼ã‚’æ±ºã‚ã‚‹
         if (Input.GetKeyDown(KeyCode.E))
         {
             gageStart = true;
@@ -122,35 +125,82 @@ public class GolfPlayerController : MonoBehaviour
         }
     }
 
-    //‘Å‚Â—Í‚ÌŠm’è
+    //æ‰“ã¤åŠ›ã®ç¢ºå®š
     private void ShotPower()
     {
-        //ƒCƒ“ƒpƒNƒg‚ğŒˆ‚ß‚é‚æ‚¤‚É‚·‚é
-        if (Input.GetKeyDown(KeyCode.E))
+        strikePower = gage;
+
+        //ã‚¤ãƒ³ãƒ‘ã‚¯ãƒˆã‚’æ±ºã‚ã‚‹ã‚ˆã†ã«ã™ã‚‹
+        if (Input.GetKeyDown(KeyCode.E) || gage <= 0.0)
         {
             strikePower = gage;
+
+            //ã‚²ãƒ¼ã‚¸ãŒ0ã ã£ãŸã‚‰ãƒ©ãƒ³ãƒ€ãƒ ã§å¼·åˆ¶ã§é£›ã‚“ã§ã
+            if (strikePower <= 0.0)
+            {
+                strikePower = Random.Range(0.01f, 1.01f);
+                impactPower = Random.Range(0.00f, 1.01f);
+                arrowObj.SetActive(false);
+                manager.nowGolfTurn = GolfPlayerManager.golfTurn.SHOT;
+                return;
+            }
+
             manager.nowGolfTurn = GolfPlayerManager.golfTurn.SHOT_IMPACT;
             isAdd = false;
         }
     }
 
-    //‘Å‚Â—Í‚Ì•â³’l‚ÌŠm’è
+    //æ‰“ã¤åŠ›ã®è£œæ­£å€¤ã®ç¢ºå®š
     private void ShotImpact()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) || gage <= -0.1f) 
         {
             impactPower = gage;
+
+            if (impactPower < 0.0f)
+            {
+                //-0.1ã ã£ãŸå ´åˆ0.1ï½1ã«ãƒ©ãƒ³ãƒ€ãƒ ã§è¨­å®šã™ã‚‹ã‚ˆã†ã«ã™ã‚‹ã€‚
+                if (impactPower == -0.1f)
+                {
+                    impactPower = Random.Range(-1.1f, -0.09f);
+                    impactPower = impactPower * -1.0f;
+                }
+                
+                impactPower = impactPower * 1.0f;
+            }
+
+            if (impactPower <= 0.05f) 
+            {
+                impactPower = 0.0f;
+            }
+
             gageStart = false;
+            arrowObj.SetActive(false);
             manager.nowGolfTurn = GolfPlayerManager.golfTurn.SHOT;
-            
         }
     }
 
-    //Œü‚¢‚Ä‚é•ûŒü‚Ö—Í‚Æ•â³’l‚ğ‚ ‚í‚¹‚Ä‘Å‚Â
+    //å‘ã„ã¦ã‚‹æ–¹å‘ã¸åŠ›ã¨è£œæ­£å€¤ã‚’ã‚ã‚ã›ã¦æ‰“ã¤
     private void Shot()
     {
-        // ForceMode.Impulse‚ÍŒ‚—Í
-        GetComponent<SeedballBehaviour>().AddForce((transform.forward + transform.up) * (strikePower * manager.ShotPower), ForceMode.Impulse);
+        var ImpactCorrection = Vector3.zero;
+
+        if (impactPower > 0.0f)
+        {
+            int random = Random.Range(0, 2);
+            if (random == 0)
+            {
+                ImpactCorrection = Vector3.left * impactPower;
+            }
+            else
+            {
+                ImpactCorrection = Vector3.right * impactPower;
+            }
+        }
+
+        //Debug.Log("ImpactCorrection : " + ImpactCorrection);
+        // ForceMode.Impulseã¯æ’ƒåŠ›
+        rb.AddForce((transform.forward + transform.up + ImpactCorrection) * (strikePower * manager.ShotPower), ForceMode.Impulse);
 
         manager.nowGolfTurn = GolfPlayerManager.golfTurn.BALL_FLY;
     }

@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,35 +6,35 @@ public class GolfPlayerManager : MonoBehaviour
 {
     public enum golfTurn
     {
-        PLAY_START,      //ƒvƒŒƒCŠJn
+        PLAY_START,      //ãƒ—ãƒ¬ã‚¤é–‹å§‹
 
-        RESET_SHOT_READY,   //‘Å‚Â‘O‚Ìó‘Ô‚É–ß‚·ó‘Ô
+        RESET_SHOT_READY,   //æ‰“ã¤å‰ã®çŠ¶æ…‹ã«æˆ»ã™çŠ¶æ…‹
 
-        SHOT_READY,      //‘Å‚Â‘O‚Ìó‘Ô
-        SHOT_POWER,      //‘Å‚Â‚Ìƒpƒ[Œˆ’è‚Ìó‘Ô
-        SHOT_IMPACT,     //‘Å‚Â‚ÌƒCƒ“ƒpƒNƒg‚ÌƒYƒŒŒˆ’è‚Ìó‘Ô
-        SHOT,           //‘Å‚Á‚Ä‚¢‚éó‘Ô
-        BALL_FLY,        //ƒ{[ƒ‹‚ª”ò‚ñ‚Å‚¢‚éó‘Ô
-        BALL_LANDING,   //ƒ{[ƒ‹‚ª’…’n‚µ‚½‚Æ‚«
+        SHOT_READY,      //æ‰“ã¤å‰ã®çŠ¶æ…‹
+        SHOT_POWER,      //æ‰“ã¤æ™‚ã®ãƒ‘ãƒ¯ãƒ¼æ±ºå®šã®çŠ¶æ…‹
+        SHOT_IMPACT,     //æ‰“ã¤æ™‚ã®ã‚¤ãƒ³ãƒ‘ã‚¯ãƒˆã®ã‚ºãƒ¬æ±ºå®šã®çŠ¶æ…‹
+        SHOT,           //æ‰“ã£ã¦ã„ã‚‹çŠ¶æ…‹
+        BALL_FLY,        //ãƒœãƒ¼ãƒ«ãŒé£›ã‚“ã§ã„ã‚‹çŠ¶æ…‹
+        BALL_LANDING,   //ãƒœãƒ¼ãƒ«ãŒç€åœ°ã—ãŸã¨ã
 
-        PLAY_END,        //ƒvƒŒƒCI—¹
+        PLAY_END,        //ãƒ—ãƒ¬ã‚¤çµ‚äº†
     }
 
     public golfTurn nowGolfTurn;
 
-    [SerializeField,Header("‚Ç‚ê‚®‚ç‚¢‚Ì‹­‚³‚Å‘Å‚Â‚©")]
+    [SerializeField,Header("ã©ã‚Œãã‚‰ã„ã®å¼·ã•ã§æ‰“ã¤ã‹")]
     private float shotPower;
     public float ShotPower { get { return shotPower; } }
 
-    [SerializeField,Header("‚Ç‚ê‚®‚ç‚¢‚Ì‘¬‚³‚Å‰ñ“]‚·‚é‚©")]
+    [SerializeField,Header("ã©ã‚Œãã‚‰ã„ã®é€Ÿã•ã§å›è»¢ã™ã‚‹ã‹")]
     private float rotSpeed;
     public float RotSpeed { get { return rotSpeed; } }
 
-    [SerializeField,Header("‘Å‚Â‚ÌƒQ[ƒW‚Ì‘¬‚³(•bŠÔ)")]
+    [SerializeField,Header("æ‰“ã¤æ™‚ã®ã‚²ãƒ¼ã‚¸ã®é€Ÿã•(ç§’é–“)")]
     private float gageSpeed;
     public float GageSpeed { get { return gageSpeed; } }
 
-    [SerializeField,Header("ƒJƒbƒv‚ÌˆÊ’u")]
+    [SerializeField,Header("ã‚«ãƒƒãƒ—ã®ä½ç½®")]
     private GameObject lookTarget;
     public GameObject LookTarget { get { return lookTarget; } }
 
