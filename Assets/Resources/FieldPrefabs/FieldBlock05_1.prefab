@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 8900536124036321923}
   - component: {fileID: 5377496225955493399}
   - component: {fileID: 5434725909006706571}
+  - component: {fileID: 3273873473245348673}
   m_Layer: 0
   m_Name: default
   m_TagString: StageObject/Panel
@@ -130,6 +131,18 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -2432090755550338912, guid: 79e085dafa09a044ba210b3bc4aa528f, type: 3}
+--- !u!114 &3273873473245348673
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3306783765863053554}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3617b0eb6f9a684b9581d99e18224f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5794379759197143083
 GameObject:
   m_ObjectHideFlags: 0
@@ -171,6 +184,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5315081917501256008}
+  - component: {fileID: 4336877952279265841}
   m_Layer: 0
   m_Name: FieldBlock05_1
   m_TagString: StageObject/Panel
@@ -195,6 +209,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4336877952279265841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7303345240380911228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8c68d8760753fa479d49bb3d5284bda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rendererSelf: {fileID: 5377496225955493399}
+  texture: {fileID: 2100000, guid: f09bc896ae214d74e8b14c43df41e39b, type: 2}
+  color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &7753934227412268793
 GameObject:
   m_ObjectHideFlags: 0
