@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class GolfPlayerController : MonoBehaviour
 {
@@ -22,6 +23,9 @@ public class GolfPlayerController : MonoBehaviour
     [SerializeField, Header("矢印表示")]
     private GameObject arrowObj;
 
+    [SerializeField]
+    GameObject LookPos;
+
     [SerializeField,Header("プレイヤーマネージャー")]
     private GolfPlayerManager manager;
     [SerializeField,Header("ゲームプレイマネージャー")]
@@ -38,6 +42,9 @@ public class GolfPlayerController : MonoBehaviour
 
     private void Awake()
     {
+        GameObject.Find("CameraController").GetComponent<CameraController>().player = gameObject;
+        GameObject.Find("PlayerViewCamera").GetComponent<CinemachineVirtualCamera>().Follow = gameObject.transform;
+        GameObject.Find("PlayerViewCamera").GetComponent<CinemachineVirtualCamera>().LookAt = LookPos.transform;
         manager = GameObject.Find("PlayerManager").GetComponent<GolfPlayerManager>();
         gamePlayManager = GameObject.Find("GamePlayManager").GetComponent<GamePlayManager>();
     }
@@ -99,6 +106,8 @@ public class GolfPlayerController : MonoBehaviour
 
         if (isOB)
         {
+            //失敗の音鳴らすときはこちら
+
             manager.nowGolfTurn = GolfPlayerManager.golfTurn.RESET_SHOT_READY;
         }
     }
@@ -109,12 +118,12 @@ public class GolfPlayerController : MonoBehaviour
         gage = 0.0f;
         impactPower = 0.0f;
         strikePower = 0.0f;
+        rb.velocity = Vector3.zero;
 
         //落ちた時前回の位置に戻す
         if (isOB)
         {
             gameObject.transform.position = shotPos;
-            rb.velocity = Vector3.zero;
             isOB = false;
         }
 
@@ -142,6 +151,7 @@ public class GolfPlayerController : MonoBehaviour
         {
             gageStart = true;
             isAdd =true;
+            rb.angularVelocity = Vector3.zero;
             manager.nowGolfTurn = GolfPlayerManager.golfTurn.SHOT_POWER;
         }
     }
@@ -162,6 +172,7 @@ public class GolfPlayerController : MonoBehaviour
                 strikePower = Random.Range(0.01f, 1.01f);
                 impactPower = Random.Range(0.00f, 1.01f);
                 arrowObj.SetActive(false);
+                gageStart = false;
                 manager.nowGolfTurn = GolfPlayerManager.golfTurn.SHOT;
                 return;
             }
