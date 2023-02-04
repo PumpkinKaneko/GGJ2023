@@ -200,7 +200,7 @@ public class GolfPlayerController : MonoBehaviour
 
         //Debug.Log("ImpactCorrection : " + ImpactCorrection);
         // ForceMode.Impulseは撃力
-        rb.AddForce((transform.forward + transform.up + ImpactCorrection) * (strikePower * manager.ShotPower), ForceMode.Impulse);
+        GetComponent<SeedballBehaviour>().AddForce((transform.forward + transform.up + ImpactCorrection) * (strikePower * manager.ShotPower), ForceMode.Impulse);
 
         manager.nowGolfTurn = GolfPlayerManager.golfTurn.BALL_FLY;
     }
