@@ -8,7 +8,17 @@ public class BunkerFieldBehaviour : BaseField
     {
         seedball.SetMaterialColor = color;
 
+        seedball.skillMode = SeedballBehaviour.SkillMode.Cacatus;
+
         base.Skill(seedball);
+    }
+
+
+    public override void SkillUpdate(SeedballBehaviour seedball)
+    {
+        seedball.GetCollider.material.bounciness = 0;
+
+        base.SkillUpdate(seedball);
     }
 
 

@@ -48,9 +48,14 @@ public class BaseField : MonoBehaviour
         {
             SeedballBehaviour seed = collision.transform.GetComponent<SeedballBehaviour>();
 
-            seed.nextSkill = new SkillAction(Skill);
-            seed.nextSkillUpdate = new SkillActionUpdate(SkillUpdate);
-            seed.nextSkillCollision = new SkillActionCollision(SkillCollision);
+            //Debug.Log("スキルゲット" + this.name);
+
+            if (collision.contacts[0].normal.y * -1 > 0.5f && seed.GetRigidbody.velocity.magnitude < 0.75f && seed.GetActionState == (int)SeedballBehaviour.ActionState.Move)
+            {
+                seed.nextSkill = new SkillAction(Skill);
+                seed.nextSkillUpdate = new SkillActionUpdate(SkillUpdate);
+                seed.nextSkillCollision = new SkillActionCollision(SkillCollision);
+            }
         }
     }
 
