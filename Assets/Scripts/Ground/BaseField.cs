@@ -59,7 +59,14 @@ public class BaseField : MonoBehaviour
 
             if (seed.GetRigidbody.velocity.y > 0.75f)
             {
-                MainSoundManager.Instance.GroundOnSECall();
+                try
+                {
+                    MainSoundManager.Instance.GroundOnSECall();
+                }
+                catch(System.Exception e)
+                {
+                    Debug.LogWarning("サウンドマネージャーが見つかりません。\n " + e);
+                }
             }
         }
     }
