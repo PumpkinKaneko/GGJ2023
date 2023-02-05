@@ -124,7 +124,7 @@ public class GolfPlayerController : MonoBehaviour
         if (isOB)
         {
             //失敗の音鳴らすときはこちら
-
+            gageStart = false;
             manager.nowGolfTurn = GolfPlayerManager.golfTurn.RESET_SHOT_READY;
             GetComponent<SeedballBehaviour>().Setup();
         }
@@ -319,6 +319,8 @@ public class GolfPlayerController : MonoBehaviour
         //Debug.Log("ImpactCorrection : " + ImpactCorrection);
         // ForceMode.Impulseは撃力
         GetComponent<SeedballBehaviour>().AddForce((transform.forward + transform.up + ImpactCorrection) * (strikePower * manager.ShotPower), ForceMode.Impulse);
+
+        MainSoundManager.Instance.ShotSECall();
 
         manager.nowGolfTurn = GolfPlayerManager.golfTurn.BALL_FLY;
     }
