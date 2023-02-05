@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FairFieldBehaviour : BaseField
+public class NullFieldBehaviour : BaseField
 {
     public override void Skill(SeedballBehaviour seedball)
     {

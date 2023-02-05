@@ -24,6 +24,7 @@ public class SeedballBehaviour : MonoBehaviour
     private int _actionState = 0;
     private int _skillState = 0;
     private bool _skillPreped = true;
+    private Vector3 _collisionImpulse = Vector3.zero;       // 力積（CollisionStayで使用）
     private SkillState _skillStateLog = SkillState.Stay;
 
     public Rigidbody GetRigidbody { get { return GetComponent<Rigidbody>(); } }
@@ -32,6 +33,10 @@ public class SeedballBehaviour : MonoBehaviour
     public SkillAction nextSkill { get; set; }
     public SkillActionUpdate nextSkillUpdate { get; set; }
     public SkillActionCollision nextSkillCollision { get; set; }
+    public Vector3 ImpactForce { get; set; }
+    public SkillMode skillMode { get; set; }
+    public BaseField panelTarget { get; set; }
+    public int GetActionState { get { return _actionState; } private set { _actionState = value; } }
 
     // Start is called before the first frame update
     void Start()
@@ -45,7 +50,7 @@ public class SeedballBehaviour : MonoBehaviour
         ActionStateUpdate();
         SkillStateUpdate();
 
-        if (skillUpdate != null) skillUpdate(this);
+        if (skillUpdate != null && _actionState == (int)ActionState.Move) skillUpdate(this);
 
         if (_actionState == (int)ActionState.Finished && _skillState == (int)SkillState.Finished) Setup();
 
@@ -149,6 +154,7 @@ public class SeedballBehaviour : MonoBehaviour
 
         _actionState = (int)ActionState.Impact;
 
+        ImpactForce = force;
         GetRigidbody.AddForce(force, mode);
     }
 
@@ -190,9 +196,45 @@ public class SeedballBehaviour : MonoBehaviour
 
         GetRigidbody.velocity = Vector3.zero;
         GetRigidbody.angularVelocity = Vector3.zero;
+        GetRigidbody.drag = 0.5f;
+        GetRigidbody.angularDrag = 0.05f;
+        GetCollider.material.bounciness = 1f;
         GetRigidbody.Sleep();
-
+        
         GameObject.Find("PlayerManager").GetComponent<GolfPlayerManager>().nowGolfTurn = GolfPlayerManager.golfTurn.RESET_SHOT_READY;
+    }
+
+
+    public void SetPanelTarget(BaseField panel)
+    {
+        if(IsHorizontalCollision()) panelTarget = panel;
+    }
+
+
+    public bool IsHorizontalCollision()
+    {
+        bool hit = false;
+
+        float impulsMag = _collisionImpulse.magnitude;
+
+        Vector3 vel = GetRigidbody.velocity;
+
+        if (impulsMag > 0.01f)
+        {
+            // 力積の方向を法線とする
+            Vector3 normal = _collisionImpulse / impulsMag;
+
+            Vector2 normalXZ = new Vector2(normal.x, normal.z);
+            Vector3 velocityXZ = new Vector2(vel.x, vel.y);
+
+            float angle = Mathf.Atan2(-Vector2.Dot(normalXZ, velocityXZ) / normal.y, velocityXZ.magnitude) * Mathf.Rad2Deg;
+
+            //Debug.Log(normal + ", " + _collisionImpulse + " = " + angle);
+
+            _collisionImpulse = Vector3.zero;
+        }
+
+        return hit;
     }
 
 
@@ -213,6 +255,12 @@ public class SeedballBehaviour : MonoBehaviour
     }
 
 
+    private void OnCollisionStay(Collision collision)
+    {
+        _collisionImpulse += collision.impulse;     // 力積チャージ！！
+    }
+
+
     private void OnGUI()
     {
         if (!showDebugGUI) return;
@@ -224,6 +272,7 @@ public class SeedballBehaviour : MonoBehaviour
             + "\nActionState > " + actionStateLog
             + "\nSkillState > " + _skillStateLog
             + "\nStopDelay > " + _stopDelayTime
+            + "\nSkillMode > " + skillMode
             + "\nSkill > " + skill
             + "\nSkillUpdate > " + skillUpdate
             + "\nSkillCollision > " + skillCollision;
@@ -252,5 +301,14 @@ public class SeedballBehaviour : MonoBehaviour
         Wait,
         Execute,
         Finished
+    }
+
+
+    public enum SkillMode
+    {
+        None = 0,
+        Cacatus,
+        Flower,
+        Bomb
     }
 }

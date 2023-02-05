@@ -109,6 +109,7 @@ public class GolfPlayerController : MonoBehaviour
             //失敗の音鳴らすときはこちら
 
             manager.nowGolfTurn = GolfPlayerManager.golfTurn.RESET_SHOT_READY;
+            GetComponent<SeedballBehaviour>().Setup();
         }
     }
 
