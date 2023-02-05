@@ -51,7 +51,7 @@ public class GolfPlayerController : MonoBehaviour
         playerCameraController = GameObject.Find("PlayerViewCamera").GetComponent<PlayerCameraController>();
         playerCameraController.player = gameObject;
 
-        GameObject.Find("Slider").GetComponent<UIGage>().controller = gameObject.GetComponent<GolfPlayerController>();
+        GameObject.Find("ShotSlider").GetComponent<UIGage>().controller = gameObject.GetComponent<GolfPlayerController>();
         GameObject.Find("PlayerViewCamera").GetComponent<CinemachineVirtualCamera>().Follow = gameObject.transform;
         GameObject.Find("PlayerViewCamera").GetComponent<CinemachineVirtualCamera>().LookAt = LookPos.transform;
         playerCameraController.player = gameObject;
