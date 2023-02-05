@@ -9,6 +9,8 @@ public class CSVIO
     {
         string[,] data;
 
+        Debug.Log("パス > " + Application.dataPath + path);
+
         StreamReader sr = new StreamReader(Application.dataPath + path, System.Text.Encoding.GetEncoding("shift_jis"));
         string strStream = sr.ReadToEnd();
 
