@@ -51,7 +51,7 @@ public class GolfPlayerController : MonoBehaviour
         playerCameraController = GameObject.Find("PlayerViewCamera").GetComponent<PlayerCameraController>();
         playerCameraController.player = gameObject;
 
-        GameObject.Find("Slider").GetComponent<UIGage>().controller = gameObject.GetComponent<GolfPlayerController>();
+        GameObject.Find("ShotSlider").GetComponent<UIGage>().controller = gameObject.GetComponent<GolfPlayerController>();
         GameObject.Find("PlayerViewCamera").GetComponent<CinemachineVirtualCamera>().Follow = gameObject.transform;
         GameObject.Find("PlayerViewCamera").GetComponent<CinemachineVirtualCamera>().LookAt = LookPos.transform;
         playerCameraController.player = gameObject;
@@ -124,7 +124,7 @@ public class GolfPlayerController : MonoBehaviour
         if (isOB)
         {
             //失敗の音鳴らすときはこちら
-
+            gageStart = false;
             manager.nowGolfTurn = GolfPlayerManager.golfTurn.RESET_SHOT_READY;
             GetComponent<SeedballBehaviour>().Setup();
         }
@@ -319,6 +319,8 @@ public class GolfPlayerController : MonoBehaviour
         //Debug.Log("ImpactCorrection : " + ImpactCorrection);
         // ForceMode.Impulseは撃力
         GetComponent<SeedballBehaviour>().AddForce((transform.forward + transform.up + ImpactCorrection) * (strikePower * manager.ShotPower), ForceMode.Impulse);
+
+        MainSoundManager.Instance.ShotSECall();
 
         manager.nowGolfTurn = GolfPlayerManager.golfTurn.BALL_FLY;
     }
