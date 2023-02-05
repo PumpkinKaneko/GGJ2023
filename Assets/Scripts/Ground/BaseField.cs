@@ -56,6 +56,11 @@ public class BaseField : MonoBehaviour
                 seed.nextSkillUpdate = new SkillActionUpdate(SkillUpdate);
                 seed.nextSkillCollision = new SkillActionCollision(SkillCollision);
             }
+
+            if (seed.GetRigidbody.velocity.y > 0.75f)
+            {
+                MainSoundManager.Instance.GroundOnSECall();
+            }
         }
     }
 

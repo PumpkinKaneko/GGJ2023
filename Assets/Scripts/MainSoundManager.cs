@@ -31,10 +31,12 @@ public class MainSoundManager : SingletonMonoBehaviour<MainSoundManager>
 
 
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
+
         //Awakeで一番最初に呼び出さないとエラーになる
-        SoundManagerSystem();
+        //SoundManagerSystem();
     }
 
     private void Start()

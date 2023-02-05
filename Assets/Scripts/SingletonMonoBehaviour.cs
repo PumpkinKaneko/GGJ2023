@@ -26,7 +26,7 @@ public class SingletonMonoBehaviour <T>
         }
     }
 
-    protected void Awake() {
+    protected virtual void Awake() {
         CheckInstance();
 
         if(dontDestroyOnLoad)
