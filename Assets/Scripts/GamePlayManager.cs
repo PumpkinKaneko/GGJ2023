@@ -26,6 +26,12 @@ public class GamePlayManager : MonoBehaviour
         shotCountReset();
     }
 
+
+    public void StartReset()
+    {
+
+    }
+
     /// <summary>
     /// 打ったカウントをリセット
     /// </summary>

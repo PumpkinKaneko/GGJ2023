@@ -30,6 +30,10 @@ public class GolfPlayerController : MonoBehaviour
     private GolfPlayerManager manager;
     [SerializeField,Header("ゲームプレイマネージャー")]
     private GamePlayManager gamePlayManager;
+    [SerializeField,Header("カメラコントローラー")]
+    private CameraController CameraCon;
+    [SerializeField,Header("プレイヤーコントローラー")]
+    private PlayerCameraController playerCameraController;
 
     [SerializeField]
     Rigidbody rb;
@@ -42,9 +46,15 @@ public class GolfPlayerController : MonoBehaviour
 
     private void Awake()
     {
-        GameObject.Find("CameraController").GetComponent<CameraController>().player = gameObject;
+        CameraCon = GameObject.Find("CameraController").GetComponent<CameraController>();
+        CameraCon.player = gameObject;
+        playerCameraController = GameObject.Find("PlayerViewCamera").GetComponent<PlayerCameraController>();
+        playerCameraController.player = gameObject;
+
+        GameObject.Find("Slider").GetComponent<UIGage>().controller = gameObject.GetComponent<GolfPlayerController>();
         GameObject.Find("PlayerViewCamera").GetComponent<CinemachineVirtualCamera>().Follow = gameObject.transform;
         GameObject.Find("PlayerViewCamera").GetComponent<CinemachineVirtualCamera>().LookAt = LookPos.transform;
+        playerCameraController.player = gameObject;
         manager = GameObject.Find("PlayerManager").GetComponent<GolfPlayerManager>();
         gamePlayManager = GameObject.Find("GamePlayManager").GetComponent<GamePlayManager>();
     }
@@ -79,7 +89,14 @@ public class GolfPlayerController : MonoBehaviour
                 break;
             case GolfPlayerManager.golfTurn.BALL_LANDING:
                 break;
+            case GolfPlayerManager.golfTurn.UP_VIEW:
+                TopView();
+                break;
+            case GolfPlayerManager.golfTurn.SIDE_VIEW:
+                SideView();
+                break;
             case GolfPlayerManager.golfTurn.PLAY_END:
+                PlayEnd();
                 break;
             default:
                 break;
@@ -141,6 +158,20 @@ public class GolfPlayerController : MonoBehaviour
     //ここで方向の打つ角度を調整
     private void ShotReady()
     {
+        //上からの視点の操作に行く
+        if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.JoystickButton2))
+        {
+            CameraCon.OnClickTopViewCamera();
+            manager.nowGolfTurn = GolfPlayerManager.golfTurn.UP_VIEW;
+        }
+
+        //横からの視点
+        if (Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyCode.JoystickButton3))
+        {
+            CameraCon.OnClickSideViewCamera();
+            manager.nowGolfTurn = GolfPlayerManager.golfTurn.SIDE_VIEW;
+        }
+
         shotPos = gameObject.transform.position;
 
         gameObject.transform.rotation = Quaternion.Euler(0, transform.rotation.y + rot, 0);
@@ -154,6 +185,58 @@ public class GolfPlayerController : MonoBehaviour
             isAdd =true;
             rb.angularVelocity = Vector3.zero;
             manager.nowGolfTurn = GolfPlayerManager.golfTurn.SHOT_POWER;
+        }
+    }
+
+    private void TopView()
+    {
+        if (Input.GetKey(KeyCode.A) || Input.GetAxis("Axis 1") < 0f)
+        {
+            CameraCon.OnClickTopCameraMoveLeftActive();
+        }
+        else if (Input.GetKey(KeyCode.D) || Input.GetAxis("Axis 1") > 0f)
+        {
+            CameraCon.OnClickTopCameraMoveRightActive();
+        }
+        else if (Input.GetKey(KeyCode.W) || Input.GetAxis("Axis 2") < 0f)
+        {
+            CameraCon.OnClickTopCameraMoveUpActive();
+        }
+        else if (Input.GetKey(KeyCode.S) || Input.GetAxis("Axis 2") > 0f)
+        {
+            CameraCon.OnClickTopCameraMoveDownActive();
+        }
+        else
+        {
+            CameraCon.OnClickCameraMoveActiveOff();
+        }
+
+        if (Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyCode.JoystickButton1))
+        {
+            CameraCon.OnClickPlayerViewCamera();
+            manager.nowGolfTurn = GolfPlayerManager.golfTurn.SHOT_READY;
+        }
+    }
+
+    private void SideView()
+    {
+        if (Input.GetKey(KeyCode.A) || Input.GetAxis("Axis 1") < 0f)
+        {
+            CameraCon.OnClickSideCameraMoveLeftActive();
+        }
+        else if (Input.GetKey(KeyCode.D) || Input.GetAxis("Axis 1") > 0f)
+        {
+            CameraCon.OnClickSideCameraMoveRightActive();
+        }
+        else
+        {
+            CameraCon.OnClickCameraMoveActiveOff();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.JoystickButton1))
+        {
+            CameraCon.OnClickPlayerViewCamera();
+            manager.nowGolfTurn = GolfPlayerManager.golfTurn.SHOT_READY;
         }
     }
 
@@ -239,6 +322,14 @@ public class GolfPlayerController : MonoBehaviour
     }
 
     /// <summary>
+    /// ゴール処理
+    /// </summary>
+    private void PlayEnd()
+    {
+        CameraCon.GoalCameraActive();
+    }
+
+    /// <summary>
     /// -5以下に行ったらの判定
     /// </summary>
     /// <param name="_isOB"></param>
@@ -282,14 +373,17 @@ public class GolfPlayerController : MonoBehaviour
         
         if (Input.GetKey(KeyCode.A) || Input.GetAxis("Axis 1") < 0f)
         {
+            playerCameraController.OnClickPlayerCameraRotatePlus();
             Value = -1.0f;
         }
         else if(Input.GetKey(KeyCode.D) || Input.GetAxis("Axis 1") > 0f)
         {
+            playerCameraController.OnClickPlayerCameraRotateMinus();
             Value = 1.0f;
         }
         else
         {
+            playerCameraController.OnClickRotateOff();
             Value = 0.0f;
         }
         return Value;

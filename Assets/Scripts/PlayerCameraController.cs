@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerCameraController : MonoBehaviour
 {
-    [SerializeField] GameObject player;//プレイヤー
+    [SerializeField] public GameObject player;//プレイヤー
     [SerializeField] float cameraRotateSpeed;
     [SerializeField] bool[] playerCameraMoveBool;
 
