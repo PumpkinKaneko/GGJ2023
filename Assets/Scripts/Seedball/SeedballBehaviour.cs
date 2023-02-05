@@ -191,6 +191,8 @@ public class SeedballBehaviour : MonoBehaviour
 
     public void Setup()
     {
+        skill(this);
+
         _actionState = (int)ActionState.Stay;
         _skillState = (int)SkillState.Stay;
 
@@ -201,6 +203,17 @@ public class SeedballBehaviour : MonoBehaviour
         GetCollider.material.bounciness = 1f;
         GetRigidbody.Sleep();
         
+        GameObject.Find("PlayerManager").GetComponent<GolfPlayerManager>().nowGolfTurn = GolfPlayerManager.golfTurn.RESET_SHOT_READY;
+    }
+
+
+    public void Repeat()
+    {
+        _actionState = (int)ActionState.Stay;
+        _skillState = (int)SkillState.Stay;
+
+        GetRigidbody.Sleep();
+
         GameObject.Find("PlayerManager").GetComponent<GolfPlayerManager>().nowGolfTurn = GolfPlayerManager.golfTurn.RESET_SHOT_READY;
     }
 
