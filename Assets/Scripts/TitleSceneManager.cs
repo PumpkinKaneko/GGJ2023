@@ -10,7 +10,8 @@ public class TitleSceneManager : MonoBehaviour
     //[SerializeField] AudioClip gameStartButtonSE;//ゲームスタートボタン用SE
 
     [SerializeField] Image[] titleImages;
-    [SerializeField] GameObject[] scoreTexts;
+    [SerializeField] GameObject scoreText;
+    [SerializeField] Transform gameStartButton;
 
     private bool buttonBool = true;//ボタン一回呼び出し
 
@@ -34,6 +35,8 @@ public class TitleSceneManager : MonoBehaviour
     {
         if (buttonBool)
         {
+            MainSoundManager.Instance.ButtonSECall();
+            GameStartButtonAnimation();
             GameStartAnimation();
             //audioSource.PlayOneShot(gameStartButtonSE);
             Invoke("OnClickGameStartInvoke", 1.5f);
@@ -62,16 +65,21 @@ public class TitleSceneManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    ///　ゲームスタートボタンアニメーション
+    /// </summary>
+    private void GameStartButtonAnimation()
+    {
+        gameStartButton.DOShakeScale(1.0f, 0.5f)
+            .Play();
+    }
 
     /// <summary>
     /// ゲームスタートアニメーション
     /// </summary>
     private void GameStartAnimation()
     {
-        for (int i = 0; i < 2; i++)
-        {
-            scoreTexts[i].SetActive(false);
-        }
+        scoreText.SetActive(false);
             
         for (int i = 0; i < 3; i++)
         {
