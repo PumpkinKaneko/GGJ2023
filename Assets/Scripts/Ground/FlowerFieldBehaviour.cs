@@ -12,6 +12,8 @@ public class FlowerFieldBehaviour : BaseField
     {
         _floatTimer = 0;
 
+        seedball.skillMode = SeedballBehaviour.SkillMode.Flower;
+
         base.Skill(seedball);
     }
 
@@ -24,8 +26,20 @@ public class FlowerFieldBehaviour : BaseField
         _floatTimer += Time.deltaTime;
         if (floatLifeTime <= _floatTimer) return;
 
+        seedball.GetRigidbody.drag = 0;
         seedball.GetRigidbody.AddForce(Vector3.up * 2.5f);
 
         base.SkillUpdate(seedball);
+    }
+
+
+    public override void SkillCollision(SeedballBehaviour seedball, Collision collision)
+    {
+        if(collision.transform.tag.Contains("StageObject"))
+        {
+            seedball.GetRigidbody.drag = 0.5f;
+        }
+
+        base.SkillCollision(seedball, collision);
     }
 }

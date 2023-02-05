@@ -66,6 +66,8 @@ public class StageManager : SingletonMonoBehaviour<StageManager>
         {
             for(int z = 0; z < _mapZX.GetLength(0); z++)
             {
+                if (_mapZX[z, x] == 0) continue;
+
                 float zOffset = 0;
                 if (x % 2 == 0) zOffset = 0.5f;
 

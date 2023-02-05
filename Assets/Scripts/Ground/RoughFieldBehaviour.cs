@@ -4,5 +4,10 @@ using UnityEngine;
 
 public class RoughFieldBehaviour : BaseField
 {
-    
+    public override void Skill(SeedballBehaviour seedball)
+    {
+        seedball.skillMode = SeedballBehaviour.SkillMode.None;
+
+        base.Skill(seedball);
+    }
 }
