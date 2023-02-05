@@ -4397,14 +4397,14 @@ MonoBehaviour:
   - {fileID: 7111516187527218191, guid: 17583a396e557fc49854c8529e0cf3d9, type: 3}
   - {fileID: 4223269442352903104, guid: f6213ba34ef22594d8819bf21c73a9b8, type: 3}
   blockScale: {x: 1.5, y: 1, z: 1.732051}
-  loadMapIndex: 2
+  loadMapIndex: 0
   mapSetting:
     mapDataPath:
-    - /CSV/Stage0000/stage0000_map.csv
+    - /CSV/Stage01/stage01_map.csv
     - /CSV/Stage0001/stage0001_map.csv
     - /CSV/Stage0002/stage0002_map.csv
     heightDataPath:
-    - /CSV/Stage0000/stage0000_height.csv
+    - /CSV/Stage01/stage01_height.csv
     - /CSV/Stage0001/stage0001_height.csv
     - /CSV/Stage0002/stage0002_height.csv
 --- !u!4 &1148372964
