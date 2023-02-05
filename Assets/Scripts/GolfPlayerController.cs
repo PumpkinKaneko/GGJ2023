@@ -243,6 +243,7 @@ public class GolfPlayerController : MonoBehaviour
     //打つ力の確定
     private void ShotPower()
     {
+        rb.velocity = Vector3.zero;
         strikePower = gage;
 
         //インパクトを決めるようにする
@@ -269,6 +270,7 @@ public class GolfPlayerController : MonoBehaviour
     //打つ力の補正値の確定
     private void ShotImpact()
     {
+        rb.velocity = Vector3.zero;
         if (DecisionButton() || gage <= -0.1f) 
         {
             impactPower = gage;
