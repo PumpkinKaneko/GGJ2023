@@ -191,7 +191,7 @@ public class SeedballBehaviour : MonoBehaviour
 
     public void Setup()
     {
-        skill(this);
+        if( skill != null) skill(this);
 
         _actionState = (int)ActionState.Stay;
         _skillState = (int)SkillState.Stay;
