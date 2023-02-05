@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     //[SerializeField] AudioClip titleBackButtonSE;//タイトルバックボタン用SE
 
+    [SerializeField] GameObject animetionController;//
     private bool buttonBool = true;//ボタン一回呼び出し
 
     /// <summary>
@@ -16,6 +17,7 @@ public class GameManager : MonoBehaviour
     {
         if (buttonBool)
         {
+            animetionController.GetComponent<GameUIAnimation>().GameClearEndAnimation();
             //audioSource.PlayOneShot(titleBackButtonSE);
             Invoke("OnClickTitleSceneInvoke", 1.5f);
             buttonBool = false;

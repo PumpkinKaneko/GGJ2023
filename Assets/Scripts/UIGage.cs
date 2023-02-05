@@ -7,10 +7,10 @@ public class UIGage : MonoBehaviour
 {
     public GolfPlayerController controller;
 
-    [SerializeField,Header("マンドラゴラちゃん")]
+    [SerializeField,Header("?????????")]
     private Slider slider;
 
-    [SerializeField, Header("ゲージ")]
+    [SerializeField, Header("???")]
     private Image image;
 
 
