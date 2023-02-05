@@ -1981,11 +1981,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59e5ea2b55f7f47aba4ca6ca8ebb0f67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dontDestroyOnLoad: 0
   titleBGM: {fileID: 1312383736}
   gamePlayBGM: {fileID: 1293962574}
   dangerBGM: {fileID: 1451348775}
   gameOverBGM: {fileID: 109151669}
   gameClearBGM: {fileID: 1788969342}
+  shotSE: {fileID: 8300000, guid: 886caaedb3eee4f72a9c9ddf817d36e2, type: 3}
+  groundOnSE: {fileID: 8300000, guid: 39069e5a611664cb2bb85024afc7f9b8, type: 3}
+  goalSE: {fileID: 8300000, guid: 77e9118a2b8bb4705a3dc68f0f9424b7, type: 3}
+  skillSE: {fileID: 8300000, guid: a99748f7c6c89451d804a701598598af, type: 3}
+  buttonSE: {fileID: 8300000, guid: 31caafeb46ac54b3ebc2233c8d8e839d, type: 3}
+  buttonSelectSE: {fileID: 8300000, guid: cbd5d74aa867e401ca0b68d9dab66d1d, type: 3}
 --- !u!1 &1451348773
 GameObject:
   m_ObjectHideFlags: 0

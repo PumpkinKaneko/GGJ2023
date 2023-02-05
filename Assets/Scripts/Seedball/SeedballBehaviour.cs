@@ -205,39 +205,6 @@ public class SeedballBehaviour : MonoBehaviour
     }
 
 
-    public void SetPanelTarget(BaseField panel)
-    {
-        if(IsHorizontalCollision()) panelTarget = panel;
-    }
-
-
-    public bool IsHorizontalCollision()
-    {
-        bool hit = false;
-
-        float impulsMag = _collisionImpulse.magnitude;
-
-        Vector3 vel = GetRigidbody.velocity;
-
-        if (impulsMag > 0.01f)
-        {
-            // —ÍÏ‚Ì•ûŒü‚ğ–@ü‚Æ‚·‚é
-            Vector3 normal = _collisionImpulse / impulsMag;
-
-            Vector2 normalXZ = new Vector2(normal.x, normal.z);
-            Vector3 velocityXZ = new Vector2(vel.x, vel.y);
-
-            float angle = Mathf.Atan2(-Vector2.Dot(normalXZ, velocityXZ) / normal.y, velocityXZ.magnitude) * Mathf.Rad2Deg;
-
-            //Debug.Log(normal + ", " + _collisionImpulse + " = " + angle);
-
-            _collisionImpulse = Vector3.zero;
-        }
-
-        return hit;
-    }
-
-
     public IEnumerator SkillSequence()
     {
         yield return new WaitForSeconds(_skillEnterDelay);
