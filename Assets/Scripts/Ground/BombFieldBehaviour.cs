@@ -24,7 +24,7 @@ public class BombFieldBehaviour : BaseField
             {
                 _oneShot = true;
 
-                seedball.SkillAddForce(seedball.ImpactForce * 0.95f, ForceMode.Impulse);
+                seedball.SkillAddForce(seedball.ImpactForce * 0.95f + Vector3.up * 2, ForceMode.Impulse);
             }
         }
 
