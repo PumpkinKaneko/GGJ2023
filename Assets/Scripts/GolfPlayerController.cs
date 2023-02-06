@@ -320,7 +320,14 @@ public class GolfPlayerController : MonoBehaviour
         // ForceMode.Impulseは撃力
         GetComponent<SeedballBehaviour>().AddForce((transform.forward + transform.up + ImpactCorrection) * (strikePower * manager.ShotPower), ForceMode.Impulse);
 
-        MainSoundManager.Instance.ShotSECall();
+        try
+        {
+            MainSoundManager.Instance.ShotSECall();
+        }
+        catch(System.Exception e)
+        {
+            Debug.LogWarning("サウンドマネージャーが見つかりません..");
+        }
 
         manager.nowGolfTurn = GolfPlayerManager.golfTurn.BALL_FLY;
     }
